@@ -9,21 +9,21 @@
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top"><i class="fa fa-user"></i> Total Operator</span>
       <div class="count"><?php echo 45; ?></div>
-      
+
     </div>
      <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top"><i class="fa fa-user"></i> Total Guest</span>
       <div class="count"><?php echo 45; ?></div>
-      
+
     </div>
 		<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 			<span class="count_top"><i class="fa fa-question-circle"></i>Total Hasil Input Sop</span>
 			<div class="count"><?php 45; ?></div>
 		</div>
-		
+
 	</div>
 	<!-- /top tiles -->
-	
+
           <div class="row">
 
 
@@ -269,6 +269,6 @@
 
               </div>
             </div>
-
+					</div>
           </div>
-         
+				</div>

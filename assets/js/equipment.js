@@ -67,8 +67,8 @@ $("#send").on('click',function(event){
               showDataBacklog();
               notifikasi("Data berhasil ditambahkan");
               // location.reload(true);
-              
-              
+
+
             }});
           },
           cancel: function () {
@@ -81,7 +81,7 @@ $("#send").on('click',function(event){
             $(".indication").val("");
             $(".status").val("");
           }
-          
+
         }
       });
     }
@@ -90,16 +90,17 @@ $("#send").on('click',function(event){
       $(".error").html("<div class='alert alert-danger alert-dismissible fade in'>Pastikan anda mengisi semua inputan</div>");
     }
   });
-  
-  
-  
+
+
+
   // fungsi load data
   function showDataBacklog(){
     $.ajax({
-      type  : 'ajax',
+      type  : 'POST',
       url   : 'show',
       async : true,
-      dataType : 'json',
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
       success : function(data){
         var t = $('#datatable').DataTable();
         var data_backlog = data[(data.length)-1];
@@ -108,7 +109,7 @@ $("#send").on('click',function(event){
         //     for(i=0; i<data.length; i++){
         // console.log(data_backlog.id_backlog);
         t.row.add( [
-          
+
           data_backlog.id_backlog,
           '<fieldset>'+
           '<div class="control-group">'+
@@ -133,14 +134,14 @@ $("#send").on('click',function(event){
           '<option '+((data_backlog.priority) == "P3" ? "selected=selected" : "")+'value="P3">P3</option>'+
           '</select>',
           data_backlog.status,
-          
+
         ] ).node().id = data_backlog.id_backlog;
-        t.draw( false ); 
+        t.draw( false );
         //    }
       }
     });
   }
-  
+
   // add priority
   $(".js-prioritas").on("change",function(){
     var id_backlog = $(this).data('id');
@@ -163,12 +164,12 @@ $("#send").on('click',function(event){
         cancel: function () {
           $.alert('Canceled!');
         },
-        
+
       }
     });
-    
+
   });
-  
+
   function update_priority(e,id){
     var id_backlog = id;
     var prioritas = e.value;
@@ -190,12 +191,12 @@ $("#send").on('click',function(event){
         cancel: function () {
           $.alert('Canceled!');
         },
-        
+
       }
     });
   }
-  
-  
+
+
   var js_date = $(".js-down_date")
   js_date.on('change', function(e){
     var id_backlog = $(this).data('id');
@@ -214,7 +215,7 @@ $("#send").on('click',function(event){
             success: function(data){
               var table = $('#datatable').DataTable();
               // var table = $('#example').DataTable();
-              
+
               var rows = table
               .rows( "#"+id_backlog )
               .remove()
@@ -226,12 +227,12 @@ $("#send").on('click',function(event){
         cancel: function () {
           $.alert('Canceled!');
         },
-        
+
       }
     });
-    
+
   });
-  
+
   function update_up(e,id){
     var id_backlog = id;
     var down_date = e.value;
@@ -260,19 +261,19 @@ $("#send").on('click',function(event){
         cancel: function () {
           $.alert('Canceled!');
         },
-        
+
       }
     });
   }
-  
+
   // });
-  
+
   var js_up_date = $(".js-up_date")
   js_up_date.on('change', function(e){
     var id_backlog = $(this).data('id');
     var up_date = $(this).val();
     var history = "onprogress";
-    console.log(id_backlog + up_date); 
+    console.log(id_backlog + up_date);
     $.confirm({
       title: 'Update up date',
       content: 'Apakah anda yakin?',
@@ -296,12 +297,12 @@ $("#send").on('click',function(event){
         cancel: function () {
           $.alert('Canceled!');
         },
-        
+
       }
     });
-    
+
   });
-  
+
   // function update(e){
   //   var js_date = $(".js-down_date")
   //   var id_backlog = js_date.data('id');
@@ -317,11 +318,11 @@ $("#send").on('click',function(event){
   //     }
   //   });
   // }
-  
+
   $(".submit_description").on("click",function(){
-    var description = $(".description").val();  
+    var description = $(".description").val();
     var id_backlog = $(".id_description").val();
-    // console.log(id_backlog + desc); 
+    // console.log(id_backlog + desc);
     $.confirm({
       title: 'Tambah Deskripsi',
       content: 'Apakah anda yakin?',
@@ -333,7 +334,7 @@ $("#send").on('click',function(event){
             dataType:"JSON",
             data : {id_backlog:id_backlog,description:description},
             success: function(data){
-              $(".modal_add").modal('hide');
+              $(".modal_add_description").modal('hide');
               $(".description").val("");
               notifikasi("Deskripsi berhasil di perbaharui");
             }
@@ -342,12 +343,12 @@ $("#send").on('click',function(event){
         cancel: function () {
           $.alert('Canceled!');
         },
-        
+
       }
     });
   });
-  
-  $('.modal_add').on('show.bs.modal', function(e) {
+
+  $('.modal_add_description').on('show.bs.modal', function(e) {
     var id = $(e.relatedTarget).data('id');
     $(e.currentTarget).find('.id_description').val(id);
     $.ajax({
@@ -362,19 +363,70 @@ $("#send").on('click',function(event){
           $(e.currentTarget).find('.description').val(data[i].description);
         }
         // $('#show_data').html(html);
-        
-        
+
+
       }
     })
   })
 
-   
+  $('.mechanic').on('show.bs.modal', function(e) {
+    // console.log($(".mechanic").data("id"));
+    var id = $(e.relatedTarget).data('id');
+    console.log(id);
+    var dataid = $(e.currentTarget).find('.id_add_mechanic').val(id);
+
+    $(".js-save_mechanic").on('click',function(){
+      var mechanic = $(".js-mechanic").val();
+      // var id_backlog = $(".js-mechanic").data("id");
+      console.log(mechanic + "" )
+      $.confirm({
+        title: 'Tambah Deskripsi',
+        content: 'Apakah anda yakin?',
+        buttons: {
+          confirm: function () {
+            $.ajax({
+              type: "POST",
+              url:"editMechanic",
+              dataType:"JSON",
+              data : {id_backlog:id,mechanic:mechanic},
+              success: function(data){
+                $(".mechanic").modal('hide');
+                notifikasi("Mekanik berhasil di tambahkan");
+              }
+            });
+          },
+          cancel: function () {
+            $.alert('Canceled!');
+          },
+
+        }
+      });
+    })
+    // sconsole.log(dataid);
+    // $.ajax({
+    //   type: "POST",
+    //   url:"getDescription",
+    //   dataType:"JSON",
+    //   data : {id_backlog:id},
+    //   success: function(data){
+    //     $(e.currentTarget).find('.description').val(data.id_backlog);
+    //     var data_backlog = data[(data.length)];
+    //     for(i=0; i<data.length; i++){
+    //       $(e.currentTarget).find('.description').val(data[i].description);
+    //     }
+    //     // $('#show_data').html(html);
+    //
+    //
+    //   }
+    // })
+  })
+
   $(document).ready(function() {
     // $('select').select2().data('select2').$dropdown.addClass('my-container');
     $('.status').select2({
       allowClear:true,
       placeholder:"Select Status",
-      
+
     })
     $('.select').select2({
       minimumResultsForSearch: Infinity
@@ -390,47 +442,3 @@ $("#send").on('click',function(event){
       // minimumInputLength:1
     });
 });
-
-$(".js-save_mechanic").on('click',function(){
-  var mechanic = $(".js-mechanic").val();
-  var id_backlog = $(".js-mechanic").data("id");
-  console.log(mechanic + "" + id_backlog)
-  $.confirm({
-    title: 'Tambah Deskripsi',
-    content: 'Apakah anda yakin?',
-    buttons: {
-      confirm: function () {
-        $.ajax({
-          type: "POST",
-          url:"editMechanic",
-          dataType:"JSON",
-          data : {id_backlog:id_backlog,mechanic:mechanic},
-          success: function(data){
-            $(".mechanic").modal('hide');
-            notifikasi("Mekanik berhasil di tambahkan");
-          }
-        });
-      },
-      cancel: function () {
-        $.alert('Canceled!');
-      },
-      
-    }
-  });
-})
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  

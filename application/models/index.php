@@ -131,7 +131,7 @@
           </tr>
        </thead>
        <tbody class="body-backlog">
-
+         
             <?php
               $num=1;
               foreach($backlog as $backlog)
@@ -155,7 +155,8 @@
               <td><?php echo $backlog['model'] ?></td>
               <td><?php echo $backlog['hours_meter'] ?></td>
               <td><?php echo $backlog['indication'] ?></td>
-              <td><select id="prioritas" data-id="<?php echo $backlog['id_backlog']?>" class="form-control select js-prioritas" style="width:80%;" required>
+              <td><select id="prioritas" data-id="<?php echo $backlog['id_backlog']?>" class="form-control select js-prioritas" required>
+                  <option>Pilih Mechanic</option>
                   <option <?php echo (($backlog['priority']) == "P1" ? "selected=selected" : "") ?>value="P1">P1</option>
                   <option <?php echo (($backlog['priority']) == "P2" ? "selected=selected" : "") ?> value="P2">P2</option>
                   <option <?php echo (($backlog['priority']) == "P3" ? "selected=selected" : "") ?>value="P3">P3</option>
@@ -168,7 +169,7 @@
             }
             ?>
 
-
+          
        </tbody>
    </table>
   </div>
@@ -177,3 +178,5 @@
 </div>
 </div>
 </div>
+
+ 

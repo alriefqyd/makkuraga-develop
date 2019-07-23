@@ -74,7 +74,7 @@
                     <?php echo $backlog['priority'] ?>
                   </td>
                 <td><?php echo $backlog['status'] ?></td>
-                
+
               </tr>
               <?php
             }
@@ -83,8 +83,8 @@
 
           </tbody>
         </table>
-        
-        <div class="modal fade bs-example-modal-lg modal_add" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal fade bs-example-modal-lg modal_add_description" role="dialog" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
@@ -111,11 +111,11 @@
                             <input type="hidden" class="id_description" name="id_description"/>
                           </div>
                         </div>
-                       
+
                           <div class="col-md-5">
                             <input name="submit_description" type="submit" class="btn btn-success submit_description" value="Tambah Data">
                           </div>
-                        
+
 
                       </div>
                     </div>
@@ -133,4 +133,3 @@
 </div>
 </div>
 </div>
-

@@ -2,11 +2,11 @@ $("#send_mechanic").on('click',function(event){
     event.preventDefault();
     var name = $('.name_mechanic').val();
     var location = $('.location_mechanic').val();
-    
+
     console.log(name +" " +location)
     if(name != '' & location != '' )
     {
-      
+
       $.confirm({
         title: '<div class="error">Konfirmasi</div>',
         content: '<p>Apakah anda yakin?</p>',
@@ -23,8 +23,8 @@ $("#send_mechanic").on('click',function(event){
                 showData();
                 notifikasi("Data berhasil ditambahkan");
                 // location.reload(true);
-                
-                
+
+
               }});
             },
             cancel: function () {
@@ -33,7 +33,7 @@ $("#send_mechanic").on('click',function(event){
               $('.name_mechanic').val("");
               $('.location_mechanic').val("");
             }
-            
+
           }
         });
       }
@@ -44,10 +44,11 @@ $("#send_mechanic").on('click',function(event){
     });
     function showData(){
         $.ajax({
-          type  : 'ajax',
+          type  : 'POST',
           url   : 'mechanic/show',
           async : true,
-          dataType : 'json',
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
           success : function(data){
             var t = $('#datatable').DataTable();
             var data_mechanic = data[(data.length)-1];
@@ -56,15 +57,15 @@ $("#send_mechanic").on('click',function(event){
             //     for(i=0; i<data.length; i++){
             // console.log(data_backlog.id_backlog);
             t.row.add( [
-              
+
               data_mechanic.id,
               data_mechanic.name,
               data_mechanic.location,
               '<a href="mechanic/edit"><i class="fa fa-edit"></i> Edit</a>  <a href="Delete"><i class="fa fa-trash"></i>Delete</a>',
-              
-              
+
+
             ] ).node().id = data_mechanic.id;
-            t.draw( false ); 
+            t.draw( false );
             //    }
           }
         });

@@ -1,4 +1,4 @@
-<div class="right_col" role="main">
+ <div class="right_col" role="main">
   <div class="">
     <div class="page-title">
       <div class="title_right">
@@ -68,7 +68,7 @@
                     <!-- <label id="description" data-toggle="modal"  data-target=".bs-example-modal-lg" class="control-label col-md-3 col-sm-3 col-xs-12" for="name"><a>Masukkan Description</a><span class="required"></span></label> -->
                     <h4><a href="" data-toggle="modal" data-id="<?php echo $backlog['id_backlog'] ?>"  data-target=".modal_add_description">
                       <i class="fa fa-edit"></i> Edit</a></h4>
-                    
+
                   </td>
                   <td><select id="prioritas" data-id="<?php echo $backlog['id_backlog']?>" class="form-control select js-prioritas" required style="width:100px">
                     <option <?php echo (($backlog['priority']) == "P1" ? "selected=selected" : "") ?>value="P1">P1</option>
@@ -79,39 +79,40 @@
                 </td>
                 <td><?php echo $backlog['status'] ?></td>
                 <td>
-                <h4><a href="" data-toggle="modal" data-target=".mechanic"><i class="fa fa-edit"></i> Edit</a></h4>
-                <div class="modal fade bs-example-modal-lg mechanic" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                          </button>
-                          <h4 class="modal-title" id="myModalLabel2">Input Mekanik</h4>
-                        </div>
-                        <div class="modal-body">
-                        <center>
-                        <select id="mechanic" data-id="<?php echo $backlog['id_backlog']?>" class="form-control js-mechanic" required style="width:500px">
-                        <?php foreach($mechanic as $mechanic){ ?> 
-                          <option value=<?php echo $mechanic['name']?>><?php echo $mechanic['name']?></option>
-                        <?php } ?>
-                        </select>
-                        </center>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary js-save_mechanic">Save changes</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <h4><a href="" data-toggle="modal" data-id="<?php echo $backlog['id_backlog'] ?>" data-target=".mechanic"><i class="fa fa-edit"></i> Edit</a></h4>
                 </td>
               </tr>
               <?php
             }
             ?>
+            <div class="modal fade bs-example-modal-lg mechanic" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                      </button>
+                      <h4 class="modal-title" id="myModalLabel2">Input Mekanik</h4>
+                    </div>
+                    <div class="modal-body">
+                    <center>
+                    <select id="mechanic" data-id="" name="mechanic_name" class="form-control js-mechanic" required style="width:500px">
+                    <?php foreach($mechanic as $mechanic){ ?>
+                      <option value=<?php echo $mechanic['id']?>><?php echo $mechanic['name']?></option>
+                    <?php } ?>
+                    </select>
+                    <input type="hidden" class="id_add_mechanic" name="id_add_mechanic"/>
+                    </center>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary js-save_mechanic">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </tbody>
         </table>
-        <div class="modal fade bs-example-modal-lg modal_add_description" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade bs-example-modal-lg modal_add_description" role="dialog" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
@@ -157,4 +158,3 @@
 </div>
 </div>
 </div>
-
