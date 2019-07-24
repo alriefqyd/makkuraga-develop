@@ -39,10 +39,11 @@
                 <tr id="<?php echo $backlog['id_backlog']?>">
                   <td><?php echo $num++ ?></td>
                   <td><fieldset>
+                    <div class="hidden"><?php echo $backlog['down_date']?></div>
                     <div class="control-group">
                       <div class="controls">
                         <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                          <input type="text" value="<?php echo $backlog['down_date']?>" autocomplete="off" data-id="<?php echo $backlog['id_backlog']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:160px" >
+                          <input type="text" disabled value="<?php echo date_indo($backlog['down_date'])?>" autocomplete="off" data-id="<?php echo $backlog['id_backlog']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:165px" >
                           <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                           <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                         </div>
@@ -50,10 +51,11 @@
                     </div>
                   </fieldset></td>
                   <td><fieldset>
+                    <div class="hidden"><?php echo $backlog['up_date']?></div>
                     <div class="control-group">
                       <div class="controls">
                         <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                          <input type="text" value="<?php echo $backlog['up_date']?> autocomplete="off" data-id="<?php echo $backlog['id_backlog']?>" class="form-control has-feedback-left js-up_date" id="date" placeholder="Up Date" name="up_date" aria-describedby="inputSuccess2Status3" style="width:160px">
+                          <input type="text" disabled value="<?php echo date_indo($backlog['up_date'])?> autocomplete="off" data-id="<?php echo $backlog['id_backlog']?>" class="form-control has-feedback-left js-up_date" id="date" placeholder="Up Date" name="up_date" aria-describedby="inputSuccess2Status3" style="width:165px">
                           <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                           <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                         </div>
@@ -66,9 +68,7 @@
                   <td><?php echo $backlog['indication'] ?></td>
                   <td>
                     <!-- <label id="description" data-toggle="modal"  data-target=".bs-example-modal-lg" class="control-label col-md-3 col-sm-3 col-xs-12" for="name"><a>Masukkan Description</a><span class="required"></span></label> -->
-                    <a data-toggle="modal" data-id="<?php echo $backlog['id_backlog'] ?>"  data-target=".bs-example-modal-lg" class="btn btn-app">
-                      <i class="fa fa-edit"></i> Edit
-                    </a>
+                    <?php echo $backlog['description'] ?>
                   </td>
                   <td>
                     <?php echo $backlog['priority'] ?>

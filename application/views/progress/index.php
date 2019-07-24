@@ -39,10 +39,12 @@
                 <tr id="<?php echo $backlog['id_backlog']?>">
                   <td><?php echo $num++ ?></td>
                   <td><fieldset>
+                    <div class="hidden"><?php echo $backlog['down_date']?></div>
                     <div class="control-group">
                       <div class="controls">
+
                         <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                          <input type="text" value="<?php echo $backlog['down_date']?>" autocomplete="off" data-id="<?php echo $backlog['id_backlog']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:160px" >
+                          <input disabled type="text" value="<?php echo date_indo($backlog['down_date']) ?>" autocomplete="off" data-id="<?php echo $backlog['id_backlog']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:165px" >
                           <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                           <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                         </div>

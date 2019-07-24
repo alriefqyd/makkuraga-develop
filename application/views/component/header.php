@@ -15,7 +15,7 @@
   <link href="<?php echo base_url() ?>assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <!-- NProgress -->
   <link href="<?php echo base_url() ?>assets/vendors/nprogress/nprogress.css" rel="stylesheet">
-  
+
   <!-- bootstrap-progressbar -->
   <link href="<?php echo base_url() ?>assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
   <!-- JQVMap -->
@@ -75,14 +75,14 @@
             <div class="menu_section">
               <h3>Menu</h3>
               <ul class="nav side-menu">
-                
+
                 <li><a><i class="fa fa-home"></i> Equipment History<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
 
                     <li><a href="<?php echo base_url() ?>equipment/backlog">Backlog</a></li>
                     <li><a href="<?php echo base_url() ?>equipment/progress">On Progress</a></li>
-                    <li><a href="<?php echo base_url() ?>equipment/done">Done</a></li>
-                    
+                    <li><a href="<?php echo base_url() ?>equipment/done">Service Log</a></li>
+
                   </ul>
                 </li>
                 <li><a><i class="fa fa-home"></i>PM Monitoring<span class="fa fa-chevron-down"></span></a>
@@ -97,9 +97,9 @@
                 </li>
                 <li><a href="<?php echo base_url() ?>mechanic"><i class="fa fa-male"></i> Mechanic </a></li>
                 <li><a href="<?php echo base_url() ?>register/add"><i class="fa fa-user"></i> Tambah Admin </a>
-                   
+
                </li>
-               
+
              </div>
 
            </div>
@@ -131,4 +131,3 @@
             </nav>
           </div>
         </div>
-        

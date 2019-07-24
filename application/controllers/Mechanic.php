@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mechanic extends CI_Controller {
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -14,7 +14,7 @@ class Mechanic extends CI_Controller {
 			$this->session->set_flashdata('flash_data', 'You dont have access!');
 			redirect('login');
 		}
-		
+
 	}
 	public function index()
 	{
@@ -32,14 +32,41 @@ class Mechanic extends CI_Controller {
 		$fields = array(
 			'name' => $this->input->post('name'),
 			'location' => $this->input->post("location")
-			
+
 		);
 		$this->db->insert('mechanic',$fields);
 		// print_r($_POST);
-		
+
 	}
 	public function show(){
 		$data = $this->mechanic_model->getMechanic();
 		echo json_encode($data);
+	}
+	public function getMechanicById(){
+			$id = $this->input->post('id');
+			$data = $this->mechanic_model->getMechanicById($id);
+			echo json_encode($data);
+	}
+	public function editMekanik(){
+			// $newData = json_encode($data);
+			// $fields = array(
+			//     'priority' => $this->input->post('priority'),
+			// );
+			//  $this->db->where('id_backlog', 'id_backlog');
+			// $this->db->update('backlog',$fields);
+			$data=$this->mechanic_model->update_mechanic();
+			echo json_encode($data);
+
+	}
+	public function deleteMekanik(){
+			// $newData = json_encode($data);
+			// $fields = array(
+			//     'priority' => $this->input->post('priority'),
+			// );
+			//  $this->db->where('id_backlog', 'id_backlog');
+			// $this->db->update('backlog',$fields);
+			$data=$this->mechanic_model->delete_mekanik();
+			echo json_encode($data);
+
 	}
 }

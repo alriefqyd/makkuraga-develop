@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Equipment extends CI_Controller {
-    
+
     public function __construct()
     {
         parent::__construct();
@@ -11,18 +11,19 @@ class Equipment extends CI_Controller {
         $this->load->model('backlog_model');
         $this->load->model('mechanic_model');
         $this->load->helper('url_helper','form');
+        $this->load->helper('tgl_indo');
         if(empty($this->session->userdata('id'))) {
             $this->session->set_flashdata('flash_data', 'You dont have access!');
             redirect('login');
         }
-        
+
     }
     public function backlog()
     {
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
         $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Priority','Status');
-        
+
         if($level_user == 'Master Admin')
         {
             $data['backlog'] = $this->backlog_model->getAllDataMaster("backlog");
@@ -41,7 +42,7 @@ class Equipment extends CI_Controller {
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
         $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Description','Priority','Status','Mekanik');
-        
+
         if($level_user == 'Master Admin')
         {
             $data['progress'] = $this->backlog_model->getAllDataMaster("onprogress");
@@ -61,7 +62,7 @@ class Equipment extends CI_Controller {
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
         $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication','Description', 'Priority','Status');
-        
+
         if($level_user == 'Master Admin')
         {
             $data['done'] = $this->backlog_model->getAllDataMaster("done");
@@ -101,7 +102,7 @@ class Equipment extends CI_Controller {
         );
         $this->db->insert('backlog',$fields);
         // print_r($_POST);
-        
+
     }
     public function editPrioritas(){
         // $newData = json_encode($data);
@@ -112,7 +113,7 @@ class Equipment extends CI_Controller {
         // $this->db->update('backlog',$fields);
         $data=$this->backlog_model->update();
         echo json_encode($data);
-       
+
     }
     public function editDownDate(){
         // $newData = json_encode($data);
@@ -123,7 +124,7 @@ class Equipment extends CI_Controller {
         // $this->db->update('backlog',$fields);
         $data=$this->backlog_model->update_down_date();
         echo json_encode($data);
-       
+
     }
     public function editUpDate(){
         // $newData = json_encode($data);
@@ -134,7 +135,7 @@ class Equipment extends CI_Controller {
         // $this->db->update('backlog',$fields);
         $data=$this->backlog_model->update_up_date();
         echo json_encode($data);
-       
+
     }
     public function editDeskripsi(){
         // $newData = json_encode($data);
@@ -145,7 +146,7 @@ class Equipment extends CI_Controller {
         // $this->db->update('backlog',$fields);
         $data=$this->backlog_model->update_deskripsi();
         echo json_encode($data);
-       
+
     }public function editMechanic(){
         // $newData = json_encode($data);
         // $fields = array(
@@ -155,7 +156,7 @@ class Equipment extends CI_Controller {
         // $this->db->update('backlog',$fields);
         $data=$this->backlog_model->update_mechanic();
         echo json_encode($data);
-       
+
     }
-    
+
 }

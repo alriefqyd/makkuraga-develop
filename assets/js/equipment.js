@@ -323,11 +323,7 @@ $("#send").on('click',function(event){
     var description = $(".description").val();
     var id_backlog = $(".id_description").val();
     // console.log(id_backlog + desc);
-    $.confirm({
-      title: 'Tambah Deskripsi',
-      content: 'Apakah anda yakin?',
-      buttons: {
-        confirm: function () {
+
           $.ajax({
             type: "POST",
             url:"editDeskripsi",
@@ -339,18 +335,12 @@ $("#send").on('click',function(event){
               notifikasi("Deskripsi berhasil di perbaharui");
             }
           });
-        },
-        cancel: function () {
-          $.alert('Canceled!');
-        },
-
-      }
-    });
-  });
+      });
 
   $('.modal_add_description').on('show.bs.modal', function(e) {
     var id = $(e.relatedTarget).data('id');
     $(e.currentTarget).find('.id_description').val(id);
+    console.log("modal_add_description");
     $.ajax({
       type: "POST",
       url:"getDescription",
