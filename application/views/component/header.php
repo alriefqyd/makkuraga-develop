@@ -76,7 +76,7 @@
               <h3>Menu</h3>
               <ul class="nav side-menu">
 
-                <li><a><i class="fa fa-home"></i> Equipment History<span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-calendar"></i> Equipment History<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
 
                     <li><a href="<?php echo base_url() ?>equipment/backlog">Backlog</a></li>
@@ -85,16 +85,7 @@
 
                   </ul>
                 </li>
-                <li><a><i class="fa fa-home"></i>PM Monitoring<span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-
-                    <li><a href="<?php echo base_url() ?>boiler">Boiler</a></li>
-                    <li><a href="<?php echo base_url() ?>turbin_list">Turbin</a></li>
-                    <li><a href="<?php echo base_url() ?>alat_bantu_list">Alat Bantu</a></li>
-                    <li><a href="<?php echo base_url() ?>coash_ash_list">Coash Ash Handling</a></li>
-                    <li><a href="<?php echo base_url() ?>water_treatment_list">Water Treatment</a></li>
-                  </ul>
-                </li>
+                <li><a href="<?php echo base_url() ?>pm"><i class="fa fa-cogs"></i> PM Monitoring </a></li>
                 <li><a href="<?php echo base_url() ?>mechanic"><i class="fa fa-male"></i> Mechanic </a></li>
                 <li><a href="<?php echo base_url() ?>register/add"><i class="fa fa-user"></i> Tambah Admin </a>
 

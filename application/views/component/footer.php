@@ -11,7 +11,7 @@
     <!-- jQuery -->
     <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
    <!-- jQuery is required -->
-    
+
     <script src="<?php echo base_url() ?>assets/vendors/datepicker/datepicker.js"></script>
     <script src="<?php echo base_url() ?>assets/vendors/jquery-validation/jquery.validate.js"></script>
     <!-- Bootstrap -->
@@ -27,7 +27,7 @@
     <!-- bootstrap-progressbar -->
     <script src="<?php echo base_url() ?>assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- iCheck -->
-    
+
     <!-- Skycons -->
     <script src="<?php echo base_url() ?>assets/vendors/skycons/skycons.js"></script>
     <!-- Flot -->
@@ -65,7 +65,7 @@
     <script src="<?php echo base_url() ?>assets/vendors/validator/validator.js"></script>
     <script src="<?php echo base_url() ?>assets/js/equipment.js"></script>
     <script src="<?php echo base_url() ?>assets/js/mechanic.js"></script>
-
+    <script src="<?php echo base_url() ?>assets/js/pm.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <script src="<?php echo base_url() ?>assets/vendors/pnotify/dist/pnotify.js"></script>
@@ -74,6 +74,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-    
+
   </body>
 </html>
