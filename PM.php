@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PM extends CI_Controller {
+class Pm extends CI_Controller {
 
     public function __construct()
     {

@@ -47,12 +47,12 @@ class Pm_model extends CI_Model
     }
     public function update()
     {
-        $id_backlog=$this->input->post('id_backlog');
-        $priority=$this->input->post('priority');
+        $id_pm=$this->input->post('id_pm');
+        $pm_state=$this->input->post('pm_state');
 
-        $this->db->set('priority', $priority);
-        $this->db->where('id_backlog', $id_backlog);
-        $result=$this->db->update('backlog');
+        $this->db->set('pm_state', $pm_state);
+        $this->db->where('id_pm', $id_pm);
+        $result=$this->db->update('pm');
         return $result;
     }
     public function update_down_date()

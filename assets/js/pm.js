@@ -15,7 +15,7 @@ $("#send_pm").on('click',function(event){
         confirm: function () {
           $.ajax({
             type: "POST",
-            url:"save",
+            url:"pm/save",
             data : {ID: ID,model:model,sn:sn,location:location},
             success: function(data){
               $(".modal-add").modal('hide');
@@ -54,7 +54,7 @@ $("#send_pm").on('click',function(event){
   function showDataPM(){
     $.ajax({
       type  : 'POST',
-      url   : 'show',
+      url   : 'pm/show',
       async : true,
       contentType: "application/json; charset=utf-8",
       dataType: "json",
@@ -67,7 +67,10 @@ $("#send_pm").on('click',function(event){
         // console.log(data_backlog.id_backlog);
         t.row.add( [
           data_pm.id_pm,
-          "",
+          '<select id="pm" data-id="'+data_pm.id_pm+'" class="form-control select js-pm" required style="width:100px">'+
+            '<option value="P1">PM 5000</option>'+
+            '<option value="P1">PM 1000</option>'+
+          '</select>',
           data_pm.ID,
           data_pm.model,
           data_pm.sn,
@@ -82,3 +85,30 @@ $("#send_pm").on('click',function(event){
       }
     });
   }
+
+  $(".js-pm").on("change",function(){
+    var id_pm = $(this).data('id');
+    var pm_state = $(this).val();
+    $.confirm({
+      title: 'Update PM',
+      content: 'Apakah anda yakin?',
+      buttons: {
+        confirm: function () {
+          $.ajax({
+            type: "POST",
+            url:"pm/editPm",
+            dataType:"JSON",
+            data : {id_pm:id_pm,pm_state:pm_state},
+            success: function(data){
+              notifikasi("Prioritas berhasil di perbaharui");
+            }
+          });
+        },
+        cancel: function () {
+          $.alert('Canceled!');
+        },
+
+      }
+    });
+
+  });

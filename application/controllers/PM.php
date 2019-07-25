@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PM extends CI_Controller {
+class Pm extends CI_Controller {
 
     public function __construct()
     {
@@ -97,14 +97,14 @@ class PM extends CI_Controller {
         // print_r($_POST);
 
     }
-    public function editPrioritas(){
+    public function editPm(){
         // $newData = json_encode($data);
         // $fields = array(
         //     'priority' => $this->input->post('priority'),
         // );
         //  $this->db->where('id_backlog', 'id_backlog');
         // $this->db->update('backlog',$fields);
-        $data=$this->backlog_model->update();
+        $data=$this->pm_model->update();
         echo json_encode($data);
 
     }

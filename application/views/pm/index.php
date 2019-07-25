@@ -92,10 +92,29 @@
        <table id="datatable" class="table table-striped table-bordered table-backlog">
         <thead>
           <tr>
-            <?php foreach($table_head as $data_head){ ?>
-              <th><?php echo $data_head ?></th>
-            <?php } ?>
+            <td rowspan="2">No</td>
+            <td rowspan="2">PM State</td>
+            <td rowspan="2">ID</td>
+            <td rowspan="2">Model</td>
+            <td rowspan="2">SN</td>
+            <td rowspan="2">Location</td>
+            <td rowspan="2">To Run</td>
+            <td rowspan="2">Prediction</td>
+            <td colspan="2">Actual Hours</td>
+            <td colspan="2">Last Service</td>
+            <td colspan="2">Next Service</td>
           </tr>
+          <tr>
+            <td>Input date</td>
+            <td>Hours meter</td>
+            <td>Input date</td>
+            <td>Hours meter</td>
+            <td>Input date</td>
+            <td>Hours meter</td>
+
+          </tr>
+
+
        </thead>
        <tbody class="body-backlog">
 
@@ -106,15 +125,54 @@
             ?>
             <tr id="<?php echo $pm['id_pm']?>">
               <td><?php echo $num++ ?></td>
-              <td><?php echo $pm['pm_state'] ?></td>
+              <td>
+                <select id="pm" data-id="<?php echo $pm['id_pm']?>" class="form-control select js-pm" required style="width:100px">
+                  <option <?php echo (($pm['pm_state']) == "PM 5000" ? "selected=selected" : "") ?> value="PM 5000">PM 5000</option>
+                  <option <?php echo (($pm['pm_state']) == "PM 1000" ? "selected=selected" : "") ?> value="PM 1000">PM 1000</option>
+                </select>
+              </td>
               <td><?php echo $pm['ID'] ?></td>
               <td><?php echo $pm['model'] ?></td>
               <td><?php echo $pm['sn'] ?></td>
               <td><?php echo $pm['location'] ?></td>
               <td><?php echo $pm['to_run'] ?></td>
               <td><?php echo $pm['prediction'] ?></td>
-              <td><?php echo $pm['last_service'] ?></td>
+              <td><fieldset>
+              <div class="control-group">
+                <div class="controls">
+                  <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
+                    <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:160px" >
+                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                    <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                  </div>
+                </div>
+              </div>
+              </fieldset></td>
+              <td><?php echo $pm['prediction'] ?></td>
+              <td><fieldset>
+              <div class="control-group">
+                <div class="controls">
+                  <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
+                    <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:160px" >
+                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                    <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                  </div>
+                </div>
+              </div>
+              </fieldset></td>
               <td><?php echo $pm['next_service'] ?></td>
+              <td><fieldset>
+              <div class="control-group">
+                <div class="controls">
+                  <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
+                    <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:160px" >
+                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                    <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                  </div>
+                </div>
+              </div>
+              </fieldset></td>
+              <td><?php echo $pm['prediction'] ?></td>
             </tr>
             <?php
             }
