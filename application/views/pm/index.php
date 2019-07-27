@@ -99,7 +99,6 @@
             <td rowspan="2">SN</td>
             <td rowspan="2">Location</td>
             <td rowspan="2">To Run</td>
-            <td rowspan="2">Prediction</td>
             <td colspan="2">Actual Hours</td>
             <td colspan="2">Last Service</td>
             <td colspan="2">Next Service</td>
@@ -127,6 +126,7 @@
               <td><?php echo $num++ ?></td>
               <td>
                 <select id="pm" data-id="<?php echo $pm['id_pm']?>" class="form-control select js-pm" required style="width:100px">
+                  <option value="">Select PM</option>
                   <option <?php echo (($pm['pm_state']) == "PM 5000" ? "selected=selected" : "") ?> value="PM 5000">PM 5000</option>
                   <option <?php echo (($pm['pm_state']) == "PM 1000" ? "selected=selected" : "") ?> value="PM 1000">PM 1000</option>
                 </select>
@@ -136,43 +136,87 @@
               <td><?php echo $pm['sn'] ?></td>
               <td><?php echo $pm['location'] ?></td>
               <td><?php echo $pm['to_run'] ?></td>
-              <td><?php echo $pm['prediction'] ?></td>
               <td><fieldset>
               <div class="control-group">
                 <div class="controls">
                   <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                    <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:160px" >
+                    <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-pm-date"
+                           data-link="pm/editActualHoursDate" id="date" placeholder="Actual Housr Date"
+                           data-table='actual_hours_date'
+                            value="<?php echo ($pm['actual_hours_date'] == '0000-00-00' ? '' : date_indo($pm['actual_hours_date']))?>"
+                           name="actual_hours_date" aria-describedby="inputSuccess2Status3" style="width:170px" >
                     <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                     <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                   </div>
                 </div>
               </div>
               </fieldset></td>
-              <td><?php echo $pm['prediction'] ?></td>
+              <td>
+                <div class="input-hm">
+                  <a href="#" class="hm_value"><?php echo ($pm['actual_hours_meter'] = 0 ? 'Input HM' : $pm['actual_hours_meter'])?></a>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 hidden input-hours-meter">
+                <input  id="hours_meter"
+                        data-table='actual_hours_meter'
+                        data-id="<?php echo $pm['id_pm'] ?>"
+                        value="<?php echo $pm['actual_hours_meter'] ?>"
+                        class="form-control col-md-7 col-xs-12 js-hours-meter" required="required" type="number">
+                </div>
+              </td>
               <td><fieldset>
               <div class="control-group">
                 <div class="controls">
                   <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                    <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:160px" >
+                    <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-pm-date"
+                           data-link="pm/editLastServiceDate" id="date" placeholder="Last Service Date"
+                           data-table='last_service_date'
+                           value="<?php echo ($pm['last_service_date'] == '0000-00-00' ? '' : date_indo($pm['last_service_date']))?>"
+                           name="last_service_date" aria-describedby="inputSuccess2Status3" style="width:170px" >
                     <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                     <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                   </div>
                 </div>
               </div>
               </fieldset></td>
-              <td><?php echo $pm['next_service'] ?></td>
+              <td>
+                <div class="input-hm">
+                  <a href="#" class="hm_value"><?php echo $pm['last_service_meter'] ?></a>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 hidden input-hours-meter">
+                <input  id="hours_meter"
+                        data-table='last_service_meter'
+                        data-id="<?php echo $pm['id_pm'] ?>"
+                        value="<?php echo $pm['last_service_meter'] ?>"
+                        class="form-control col-md-7 col-xs-12 js-hours-meter" required="required" type="number">
+                </div>
+              </td>
               <td><fieldset>
               <div class="control-group">
                 <div class="controls">
                   <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                    <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:160px" >
+                    <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-pm-date"
+                           data-link="pm/editNextServiceDate" id="date" placeholder="Next Service Date"
+                           data-table='next_service_date'
+                           value="<?php echo ($pm['next_service_date'] == '0000-00-00' ? '' : date_indo($pm['next_service_date']))?>"
+                           name="next_service_date" aria-describedby="inputSuccess2Status3" style="width:170px" >
                     <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                     <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                   </div>
                 </div>
               </div>
               </fieldset></td>
-              <td><?php echo $pm['prediction'] ?></td>
+              <td>
+                <div class="input-hm">
+                  <a href="#" class="hm_value"><?php echo $pm['next_service_meter'] ?></a>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 hidden input-hours-meter">
+                  <input id="hours_meter"
+                        data-table='next_service_meter'
+                        data-id="<?php echo $pm['id_pm'] ?>"
+                        value="<?php echo $pm['next_service_meter'] ?>"
+                        class="form-control col-md-7 col-xs-12 js-hours-meter" required="required" type="number">
+                </div>
+              </td>
             </tr>
             <?php
             }

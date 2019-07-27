@@ -98,35 +98,27 @@ class Pm extends CI_Controller {
 
     }
     public function editPm(){
-        // $newData = json_encode($data);
-        // $fields = array(
-        //     'priority' => $this->input->post('priority'),
-        // );
-        //  $this->db->where('id_backlog', 'id_backlog');
-        // $this->db->update('backlog',$fields);
         $data=$this->pm_model->update();
         echo json_encode($data);
 
     }
-    public function editDownDate(){
-        // $newData = json_encode($data);
-        // $fields = array(
-        //     'priority' => $this->input->post('priority'),
-        // );
-        //  $this->db->where('id_backlog', 'id_backlog');
-        // $this->db->update('backlog',$fields);
-        $data=$this->backlog_model->update_down_date();
+    public function editHm(){
+        $data=$this->pm_model->updateHm();
         echo json_encode($data);
 
     }
-    public function editUpDate(){
-        // $newData = json_encode($data);
-        // $fields = array(
-        //     'priority' => $this->input->post('priority'),
-        // );
-        //  $this->db->where('id_backlog', 'id_backlog');
-        // $this->db->update('backlog',$fields);
-        $data=$this->backlog_model->update_up_date();
+    public function editActualHoursDate(){
+        $data=$this->pm_model->update_actual_date();
+        echo json_encode($data);
+
+    }
+    public function editLastServiceDate(){
+        $data=$this->pm_model->update_last_service();
+        echo json_encode($data);
+
+    }
+    public function editNextServiceDate(){
+        $data=$this->pm_model->update_next_service();
         echo json_encode($data);
 
     }

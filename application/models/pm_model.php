@@ -55,27 +55,45 @@ class Pm_model extends CI_Model
         $result=$this->db->update('pm');
         return $result;
     }
-    public function update_down_date()
+    public function updateHm()
     {
-        $id_backlog=$this->input->post('id_backlog');
-        $down_date=$this->input->post('down_date');
+        $id_pm=$this->input->post('id_pm');
+        $hm=$this->input->post('hm');
+        $table=$this->input->post('table');
 
-        $this->db->set('down_date', $down_date);
-        $this->db->set('history', 'onprogress');
-        $this->db->where('id_backlog', $id_backlog);
-        $result=$this->db->update('backlog');
+        $this->db->set($table, $hm);
+        $this->db->where('id_pm', $id_pm);
+        $result=$this->db->update('pm');
         return $result;
     }
-    public function update_up_date()
+    public function update_actual_date()
     {
-        $id_backlog=$this->input->post('id_backlog');
-        $up_date=$this->input->post('up_date');
+        $id_pm=$this->input->post('id_pm');
+        $actual_hours_date=$this->input->post('date');
 
-        $this->db->set('up_date', $up_date);
-        $this->db->set('history', 'done');
-        $this->db->set('status', 'done');
-        $this->db->where('id_backlog', $id_backlog);
-        $result=$this->db->update('backlog');
+        $this->db->set('actual_hours_date', $actual_hours_date);
+        $this->db->where('id_pm', $id_pm);
+        $result=$this->db->update('pm');
+        return $result;
+    }
+    public function update_last_service()
+    {
+        $id_pm=$this->input->post('id_pm');
+        $date=$this->input->post('date');
+
+        $this->db->set('last_service_date', $date);
+        $this->db->where('id_pm', $id_pm);
+        $result=$this->db->update('pm');
+        return $result;
+    }
+    public function update_next_service()
+    {
+        $id_pm=$this->input->post('id_pm');
+        $date=$this->input->post('date');
+
+        $this->db->set('next_service_date', $date);
+        $this->db->where('id_pm', $id_pm);
+        $result=$this->db->update('pm');
         return $result;
     }
     public function update_deskripsi()
