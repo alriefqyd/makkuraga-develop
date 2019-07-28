@@ -73,7 +73,7 @@ class Backlog_model extends CI_Model
 
         $this->db->set('up_date', $up_date);
         $this->db->set('history', 'done');
-        $this->db->set('status', 'done');
+        $this->db->set('status', 'Service Log');
         $this->db->where('id_backlog', $id_backlog);
         $result=$this->db->update('backlog');
         return $result;

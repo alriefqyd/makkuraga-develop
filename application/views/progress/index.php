@@ -21,7 +21,7 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content data-backlog">
-           <table id="datatable" class="table table-striped table-bordered table-backlog">
+        <table id="datatable" class="table table-striped table-bordered table-backlog">
             <thead>
               <tr>
                 <?php foreach($table_head as $data_head){ ?>
@@ -150,7 +150,7 @@
               <div class="modal-body">
                 <div class="row">
                   <div class="col-md-12 col-sm-12 col-xs-12">
-                    
+
                       <div class="x_content">
                         <div class="row">
                           <div class="col-md-12 col-sm-12 col-xs-12">
@@ -168,7 +168,7 @@
                         </div>
                       </div>
                     </div>
-                 
+
                 </div>
               </div>
             </div>

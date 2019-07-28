@@ -134,7 +134,28 @@ $("#send").on('click',function(event){
           '<option '+((data_backlog.priority) == "P3" ? "selected=selected" : "")+'value="P3">P3</option>'+
           '</select>',
           data_backlog.status,
-
+          '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal'+data_backlog.id_backlog+'">Details</button>'+
+          '<div id="myModal'+data_backlog.id_backlog+'" class="modal fade" role="dialog">'+
+          '<div class="modal-dialog">'+
+          '<div class="modal-content">'+
+            '<div class="modal-header">'+
+              '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+              '<h4 class="modal-title">Backlog - Data Details</h4>'+
+            '</div>'+
+            '<div class="modal-body">'+
+            '<h3>ID Alat     : '+data_backlog.ID+'</h3>'+
+            '<h3>Model Alat  : '+data_backlog.model+'</h3>'+
+            '<h3>Down Date   : '+data_backlog.down_date+'</h3>'+
+            '<h3>Hours Meter : '+data_backlog.hours_meter+'</h3>'+
+            '<h3>Indication  : '+data_backlog.indication+'</h3>'+
+            '<h3>Status      : '+data_backlog.status+'</h3>'+
+            '<h3>Priority    : '+data_backlog.priority+'</h3>'+
+            '<h3>Reminder KM : '+data_backlog.reminder_km+'</h3>'+
+            '<h3>Reminder HM : '+data_backlog.reminder_hours_meter+'</h3>'+
+            '</div>'+
+          '</div>'+
+          '</div>'+
+          '</div>'
         ] ).node().id = data_backlog.id_backlog;
         t.draw( false );
         //    }

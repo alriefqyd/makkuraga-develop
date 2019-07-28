@@ -22,7 +22,7 @@ class Equipment extends CI_Controller {
     {
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
-        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Priority','Status');
+        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Priority','Status','Details');
 
         if($level_user == 'Master Admin')
         {
@@ -41,7 +41,7 @@ class Equipment extends CI_Controller {
     {
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
-        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Description','Priority','Status','Mekanik');
+        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Description','Priority','Status','Mekanik','Detail');
 
         if($level_user == 'Master Admin')
         {
@@ -61,7 +61,7 @@ class Equipment extends CI_Controller {
     {
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
-        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication','Description', 'Priority','Status');
+        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication','Description', 'Priority','Status','Detail');
 
         if($level_user == 'Master Admin')
         {
