@@ -47,7 +47,7 @@
                                 </div>
                               </div>
                               <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Masukkan Model <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Masukkan Kambing <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                   <input id="name" class="form-control col-md-7 col-xs-12 model" name="model" required="required" type="text">
