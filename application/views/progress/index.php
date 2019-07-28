@@ -83,6 +83,31 @@
                 <td>
                 <h4><a href="" data-toggle="modal" data-id="<?php echo $backlog['id_backlog'] ?>" data-target=".mechanic"><i class="fa fa-edit"></i> Edit</a></h4>
                 </td>
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<?php echo $backlog['id_backlog'] ?>">Details</button>
+              </td>
+              <div id="myModal<?php echo $backlog['id_backlog'] ?>" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">On Progress - Data Details</h4>
+                </div>
+                <div class="modal-body">
+                <h3>ID Alat     : <?php echo $backlog['ID']; ?></h3>
+                <h3>Model Alat  : <?php echo $backlog['model']; ?></h3>
+                <h3>Down Date   : <?php echo $backlog['down_date']; ?></h3>
+                <h3>Hours Meter : <?php echo $backlog['hours_meter']; ?></h3>
+                <h3>Indication  : <?php echo $backlog['indication']; ?></h3>
+                <h3>Description : <?php echo $backlog['description']; ?></h3>
+                <h3>Priority    : <?php echo $backlog['priority']; ?></h3>
+                <h3>Status      : <?php echo $backlog['status']; ?></h3>
+                <h3>Mekanik     : <?php echo $backlog['mechanic']; ?></h3>
+                <h3>Reminder KM : <?php echo $backlog['reminder_km']; ?></h3>
+                <h3>Reminder HM : <?php echo $backlog['reminder_hours_meter']; ?></h3>
+                </div>
+              </div>
+              </div>
+              </div>
               </tr>
               <?php
             }
