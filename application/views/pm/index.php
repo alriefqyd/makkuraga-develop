@@ -127,8 +127,11 @@
               <td>
                 <select id="pm" data-id="<?php echo $pm['id_pm']?>" class="form-control select js-pm" required style="width:100px">
                   <option value="">Select PM</option>
-                  <option <?php echo (($pm['pm_state']) == "PM 5000" ? "selected=selected" : "") ?> value="PM 5000">PM 5000</option>
+                  <option <?php echo (($pm['pm_state']) == "PM 500" ? "selected=selected" : "") ?> value="PM 500">PM 500</option>
                   <option <?php echo (($pm['pm_state']) == "PM 1000" ? "selected=selected" : "") ?> value="PM 1000">PM 1000</option>
+                  <option <?php echo (($pm['pm_state']) == "PM 2000" ? "selected=selected" : "") ?> value="PM 2000">PM 2000</option>
+                  <option <?php echo (($pm['pm_state']) == "PM 4000" ? "selected=selected" : "") ?> value="PM 4000">PM 4000</option>
+                  <option <?php echo (($pm['pm_state']) == "PM 6000" ? "selected=selected" : "") ?> value="PM 6000">PM 6000</option>
                 </select>
               </td>
               <td><?php echo $pm['ID'] ?></td>

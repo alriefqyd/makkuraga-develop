@@ -68,13 +68,14 @@
                                 </div>
                               </div>
                               <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Masukkan Prioritas <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Status <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="status" id="heard" class="form-control status" style="width:100%">
                                 <option value="Waiting Part">Waiting Part</option>
                                 <option value="Breakdown">Breakdown</option>
-                                <option value="P3">P3</option>
+                                <option value="Waiting Schedule">Waiting Schedule</option>
+                                <option value="Waiting Part and Schedule">Waiting Part and Schedule</option>
                                </select>
                                  </div>
                               </div>
@@ -90,7 +91,7 @@
                                  </div>
                               </div>
                               <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Masukkan Reminder Km <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Masukkan Reminder KM <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                   <input id="name" class="form-control col-md-7 col-xs-12 reminder_km" name="reminder_km" required="required" type="text">

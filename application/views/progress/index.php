@@ -120,20 +120,18 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Description</h4>
+                <h4 class="modal-title" id="myModalLabel">Masukkan Deskripsi</h4>
               </div>
               <div class="modal-body">
                 <div class="row">
                   <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="x_panel">
+                    
                       <div class="x_content">
                         <div class="row">
                           <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="error"></div>
                             <div class="x_content">
                              <div class="item form-group">
-                             <label class="col-md-3">Masukkan description
-                             </label>
                              <div class="col-md-12 col-sm-12 col-xs-12">
                               <textarea id="textarea" data-id="" rows="6" required="required" name="status" class="form-control col-md-7 col-xs-12 description"></textarea>
                             </div>
@@ -145,7 +143,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                 
                 </div>
               </div>
             </div>
