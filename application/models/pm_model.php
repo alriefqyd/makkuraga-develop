@@ -13,6 +13,15 @@ class Pm_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    public function getDataById()
+    {
+        $id_pm = $this->input->post('id_pm');
+        $this->db->select('*');
+        $this->db->from('pm');
+        $this->db->where('id_pm',$id_pm);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     public function getDescription($id)
     {
         $this->db->select('*');
@@ -47,35 +56,57 @@ class Pm_model extends CI_Model
     }
     public function update()
     {
-        $id_backlog=$this->input->post('id_backlog');
-        $priority=$this->input->post('priority');
+        $id_pm=$this->input->post('id_pm');
+        $pm_state=$this->input->post('pm_state');
 
-        $this->db->set('priority', $priority);
-        $this->db->where('id_backlog', $id_backlog);
-        $result=$this->db->update('backlog');
+        $this->db->set('pm_state', $pm_state);
+        $this->db->where('id_pm', $id_pm);
+        $result=$this->db->update('pm');
         return $result;
     }
-    public function update_down_date()
+    public function updateHm($to_run)
     {
-        $id_backlog=$this->input->post('id_backlog');
-        $down_date=$this->input->post('down_date');
+        $id_pm=$this->input->post('id_pm');
+        $hm=$this->input->post('hm');
+        $table=$this->input->post('table');
+        // if($table == 'next_service_meter'){
+        //   $to_run = $hm - $data;
+        // }
 
-        $this->db->set('down_date', $down_date);
-        $this->db->set('history', 'onprogress');
-        $this->db->where('id_backlog', $id_backlog);
-        $result=$this->db->update('backlog');
+        $this->db->set($table, $hm);
+        $this->db->set('to_run', $to_run);
+        $this->db->where('id_pm', $id_pm);
+        $result=$this->db->update('pm');
         return $result;
     }
-    public function update_up_date()
+    public function update_actual_date()
     {
-        $id_backlog=$this->input->post('id_backlog');
-        $up_date=$this->input->post('up_date');
+        $id_pm=$this->input->post('id_pm');
+        $actual_hours_date=$this->input->post('date');
 
-        $this->db->set('up_date', $up_date);
-        $this->db->set('history', 'done');
-        $this->db->set('status', 'done');
-        $this->db->where('id_backlog', $id_backlog);
-        $result=$this->db->update('backlog');
+        $this->db->set('actual_hours_date', $actual_hours_date);
+        $this->db->where('id_pm', $id_pm);
+        $result=$this->db->update('pm');
+        return $result;
+    }
+    public function update_last_service()
+    {
+        $id_pm=$this->input->post('id_pm');
+        $date=$this->input->post('date');
+
+        $this->db->set('last_service_date', $date);
+        $this->db->where('id_pm', $id_pm);
+        $result=$this->db->update('pm');
+        return $result;
+    }
+    public function update_next_service()
+    {
+        $id_pm=$this->input->post('id_pm');
+        $date=$this->input->post('date');
+
+        $this->db->set('next_service_date', $date);
+        $this->db->where('id_pm', $id_pm);
+        $result=$this->db->update('pm');
         return $result;
     }
     public function update_deskripsi()

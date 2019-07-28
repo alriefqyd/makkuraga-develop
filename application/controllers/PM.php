@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PM extends CI_Controller {
+class Pm extends CI_Controller {
 
     public function __construct()
     {
@@ -80,6 +80,10 @@ class PM extends CI_Controller {
         $data = $this->pm_model->getAllData();
         echo json_encode($data);
     }
+    public function showById(){
+        $data = $this->pm_model->getDataById();
+        echo json_encode($data);
+    }
     public function getDescription(){
         $id = $this->input->post('id_backlog');
         $data = $this->backlog_model->getDescription($id);
@@ -95,58 +99,46 @@ class PM extends CI_Controller {
         );
         $this->db->insert('pm',$fields);
         // print_r($_POST);
-
     }
-    public function editPrioritas(){
-        // $newData = json_encode($data);
-        // $fields = array(
-        //     'priority' => $this->input->post('priority'),
-        // );
-        //  $this->db->where('id_backlog', 'id_backlog');
-        // $this->db->update('backlog',$fields);
-        $data=$this->backlog_model->update();
+    public function editPm(){
+        $data=$this->pm_model->update();
         echo json_encode($data);
-
     }
-    public function editDownDate(){
-        // $newData = json_encode($data);
-        // $fields = array(
-        //     'priority' => $this->input->post('priority'),
-        // );
-        //  $this->db->where('id_backlog', 'id_backlog');
-        // $this->db->update('backlog',$fields);
-        $data=$this->backlog_model->update_down_date();
-        echo json_encode($data);
+    public function editHm(){
+      $id_pm=$this->input->post('id_pm');
+      $data_ = $this->pm_model->getDescription($id_pm);
+      $hm=$this->input->post('hm');
+      $table=$this->input->post('table');
+      foreach ($data_ as $dat) {
+       if($table == 'actual_hours_meter'){
+         $to_run = $dat['next_service_meter'] - $hm;
+       }else if ($table == 'next_service_meter'){
+         $to_run = $hm - $dat['actual_hours_meter'];
+       } else{
+         $to_run = $dat['to_run'];
+       }
+      }
 
+      $data=$this->pm_model->updateHm($to_run);
+      echo json_encode($data);
     }
-    public function editUpDate(){
-        // $newData = json_encode($data);
-        // $fields = array(
-        //     'priority' => $this->input->post('priority'),
-        // );
-        //  $this->db->where('id_backlog', 'id_backlog');
-        // $this->db->update('backlog',$fields);
-        $data=$this->backlog_model->update_up_date();
+    public function editActualHoursDate(){
+        $data=$this->pm_model->update_actual_date();
         echo json_encode($data);
-
+    }
+    public function editLastServiceDate(){
+        $data=$this->pm_model->update_last_service();
+        echo json_encode($data);
+    }
+    public function editNextServiceDate(){
+        $data=$this->pm_model->update_next_service();
+        echo json_encode($data);
     }
     public function editDeskripsi(){
-        // $newData = json_encode($data);
-        // $fields = array(
-        //     'priority' => $this->input->post('priority'),
-        // );
-        //  $this->db->where('id_backlog', 'id_backlog');
-        // $this->db->update('backlog',$fields);
         $data=$this->backlog_model->update_deskripsi();
         echo json_encode($data);
 
     }public function editMechanic(){
-        // $newData = json_encode($data);
-        // $fields = array(
-        //     'priority' => $this->input->post('priority'),
-        // );
-        //  $this->db->where('id_backlog', 'id_backlog');
-        // $this->db->update('backlog',$fields);
         $data=$this->backlog_model->update_mechanic();
         echo json_encode($data);
 
