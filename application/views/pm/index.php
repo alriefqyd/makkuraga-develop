@@ -135,7 +135,9 @@
               <td><?php echo $pm['model'] ?></td>
               <td><?php echo $pm['sn'] ?></td>
               <td><?php echo $pm['location'] ?></td>
-              <td><?php echo $pm['to_run'] ?></td>
+              <td>
+                <input type="text" class="to_run">
+                <?php echo $pm['to_run'] ?></td>
               <td><fieldset>
               <div class="control-group">
                 <div class="controls">

@@ -13,6 +13,15 @@ class Pm_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    public function getDataById()
+    {
+        $id_pm = $this->input->post('id_pm');
+        $this->db->select('*');
+        $this->db->from('pm');
+        $this->db->where('id_pm',$id_pm);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     public function getDescription($id)
     {
         $this->db->select('*');
@@ -55,13 +64,17 @@ class Pm_model extends CI_Model
         $result=$this->db->update('pm');
         return $result;
     }
-    public function updateHm()
+    public function updateHm($to_run)
     {
         $id_pm=$this->input->post('id_pm');
         $hm=$this->input->post('hm');
         $table=$this->input->post('table');
+        // if($table == 'next_service_meter'){
+        //   $to_run = $hm - $data;
+        // }
 
         $this->db->set($table, $hm);
+        $this->db->set('to_run', $to_run);
         $this->db->where('id_pm', $id_pm);
         $result=$this->db->update('pm');
         return $result;

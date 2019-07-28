@@ -91,13 +91,62 @@ $("#send_pm").on('click',function(event){
             '</div>'+
           '</div>'+
           '</fieldset>',
-          '<div class="input-hm">'+
-            '<a href="#" onclick="add_hm_form($(this))" class="hm_value">'+data_pm.actual_hours_meter+'</a>'+
+          '<div class="input-hm" onclick="add_hm_form($(this))">'+
+            '<a href="#" class="hm_value">'+data_pm.actual_hours_meter+'</a>'+
           '</div>'+
           '<div class="col-md-6 col-sm-6 col-xs-12 hidden input-hours-meter">'+
           '<input  id="hours_meter"'+
                   'data-table="actual_hours_meter"'+
                   'data-id="'+data_pm.id_pm+'"'+
+                  'onkeypress="add_hm($(this))"'+
+                  'class="form-control col-md-7 col-xs-12 js-hours-meter" required="required" type="number">'+
+          '</div>',
+          '<fieldset>'+
+          '<div class="control-group">'+
+            '<div class="controls">'+
+              '<div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">'+
+                '<input type="text" onchange="pm_date_js($(this))" autocomplete="off" data-id="'+data_pm.id_pm+'" class="form-control has-feedback-left js-pm-date"'+
+                       'data-link="pm/editLastServiceDate" id="date" placeholder="Actual Housr Date"'+
+                       'data-table="last_hours_date"'+
+                       'name="last_hours_date" aria-describedby="inputSuccess2Status3" style="width:170px" >'+
+                '<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>'+
+                '<span id="inputSuccess2Status3" class="sr-only">(success)</span>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+          '</fieldset>',
+          '<div class="input-hm" onclick="add_hm_form($(this))">'+
+            '<a href="#" class="hm_value">'+data_pm.last_service_meter+'</a>'+
+          '</div>'+
+          '<div class="col-md-6 col-sm-6 col-xs-12 hidden input-hours-meter">'+
+          '<input  id="hours_meter"'+
+                  'data-table="last_service_meter"'+
+                  'data-id="'+data_pm.id_pm+'"'+
+                  'onkeypress="add_hm($(this))"'+
+                  'class="form-control col-md-7 col-xs-12 js-hours-meter" required="required" type="number">'+
+          '</div>',
+          '<fieldset>'+
+          '<div class="control-group">'+
+            '<div class="controls">'+
+              '<div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">'+
+                '<input type="text" onchange="pm_date_js($(this))" autocomplete="off" data-id="'+data_pm.id_pm+'" class="form-control has-feedback-left js-pm-date"'+
+                       'data-link="pm/editNextServiceDate" id="date" placeholder="Actual Housr Date"'+
+                       'data-table="last_hours_date"'+
+                       'name="last_hours_date" aria-describedby="inputSuccess2Status3" style="width:170px" >'+
+                '<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>'+
+                '<span id="inputSuccess2Status3" class="sr-only">(success)</span>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+          '</fieldset>',
+          '<div class="input-hm" onclick="add_hm_form($(this))">'+
+            '<a href="#" class="hm_value">'+data_pm.next_service_meter+'</a>'+
+          '</div>'+
+          '<div class="col-md-6 col-sm-6 col-xs-12 hidden input-hours-meter">'+
+          '<input  id="hours_meter"'+
+                  'data-table="next_service_meter"'+
+                  'data-id="'+data_pm.id_pm+'"'+
+                  'onkeypress="add_hm($(this))"'+
                   'class="form-control col-md-7 col-xs-12 js-hours-meter" required="required" type="number">'+
           '</div>',
 
@@ -214,7 +263,7 @@ function pm_date_js(e){
             data : {id_pm:id_pm,date:date},
             success: function(data){
               // var table = $('#example').DataTable();
-              notifikasi("Down date berhasil di perbaharui");
+            notifikasi("Down date berhasil di perbaharui");
             }
           });
         },
@@ -242,18 +291,75 @@ function pm_date_js(e){
       url:"pm/editHm",
       dataType:"JSON",
       data : {id_pm:id_pm,table:table,hm:hm},
-      success: function(data){
-        notifikasi("Prioritas berhasil di perbaharui");
+      success:function(data){
+        console.log(data);
+        notifikasi("HM berhasil di perbaharui");
       }
     })
       $(this).closest('.input-hours-meter').siblings('.input-hm').find('.hm_value').html(hm);
       $(this).closest('.input-hours-meter').addClass('hidden');
-      // munculkan input hm
       $(this).closest('.input-hours-meter').siblings('.input-hm').removeClass('hidden');
     }
   });
 
-  function add_hm_form(_this,e){
+  function add_hm_form(_this){
     _this.siblings('.input-hours-meter').removeClass('hidden');
     _this.addClass('hidden');
+  }
+  function add_hm(e) {
+    var key = event.which;
+    var table = e.data('table');
+    var id_pm = e.data('id');
+    console.log(key);
+    console.log(id_pm);
+    var hm = e.val();
+    if(key == 13){
+    $.ajax({
+      type: "POST",
+      url:"pm/editHm",
+      dataType:"JSON",
+      data : {id_pm:id_pm,table:table,hm:hm},
+      success: function(data){
+        notifikasi("Prioritas berhasil di perbaharui");
+      }
+    })
+      e.closest('.input-hours-meter').siblings('.input-hm').find('.hm_value').html(hm);
+      e.closest('.input-hours-meter').addClass('hidden');
+      // munculkan input hm
+      e.closest('.input-hours-meter').siblings('.input-hm').removeClass('hidden');
+    }
+  }
+  function showHM(id_pm){
+    // $.ajax({
+    //   type  : 'POST',
+    //   url   : 'pm/show',
+    //   async : true,
+    //   contentType: "application/json; charset=utf-8",
+    //   dataType: "json",
+    //   success : function(data){
+    //     var t = $('#datatable').DataTable();
+    //     var data_pm = data[(data.length)-1];
+    //     //     var i;
+    //     //     var counter = 1;
+    //     console.log(data);
+    //   //   for(i=0; i<data.length; i++){
+    //   //   console.log(data.data[i].id_backlog);
+    //   //   // console.log(data_pm);
+    //   // }
+    //   }
+    // });
+    // var id=$(this).data('id');
+            $.ajax({
+                type : "GET",
+                url  : "pm/showById",
+                dataType : "JSON",
+                data : {id_pm:id_pm},
+                success: function(data){
+                    $.each(data,function(actual_hours_meter){
+                        console.log(data)
+                    });
+                }
+            });
+            return false;
+            console.log(id_pm);
   }
