@@ -19,21 +19,20 @@ $("#send_user").on('click',function(event){
             url:"user/save",
             data : {nama: nama,user_name:user_name,password:password,level:level,lokasi:lokasi},
             success: function(data){
-              $(".modal-add").modal('hide');
+              $(".modal-add_user").modal('hide');
               $(".error").hide();
               $(".nama").val("");
               $(".user_name").val("");
               $(".password").val("");
               $(".level").val("");
               $(".lokasi").val("");
-              // showDataUser();
+              showDataUser();
               notifikasi("Data berhasil ditambahkan");
               // location.reload(true);
             }});
           },
           cancel: function () {
-            $(".modal-add").modal('hide');
-            $(".modal-add").modal('hide');
+            $(".modal-add_user").modal('hide');
             $(".error").hide();
             $(".nama").val("");
             $(".user_name").val("");
@@ -49,4 +48,117 @@ $("#send_user").on('click',function(event){
     {
       $(".error").html("<div class='alert alert-danger alert-dismissible fade in'>Pastikan anda mengisi semua inputan</div>");
     }
+  });
+
+  function showDataUser(){
+    $.ajax({
+      type  : 'POST',
+      url   : 'user/show',
+      async : true,
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success : function(data){
+        var t = $('#datatable').DataTable();
+        var data = data[(data.length)-1];
+        t.row.add( [
+          data.id,
+          data.nama,
+          data.user_name,
+          data.password,
+          data.level,
+          data.lokasi,
+          '<a href="" data-toggle="modal"'+
+            'data-id="'+data.id+'"'+
+            'data-target=".modal_edit_mechanic">'+
+            '<i class="fa fa-edit"></i> Edit</a> ||'+
+            '<a href="#" class="delete_mechanic"'+
+            'data-id="'+data.id+'">'+
+            '<i class="fa fa-trash"></i>Delete</a>'
+        ] ).node().id = data.id;
+        t.draw( false );
+        //    }
+      }
+    });
+  }
+
+
+  $('.modal_edit_user').on('show.bs.modal', function(e) {
+    var id = $(e.relatedTarget).data('id');
+    $(e.currentTarget).find('.id_edit_user').val(id);
+    $(e.currentTarget).find('.user_name').val("");
+    $(e.currentTarget).find('.password').val("");
+    $(e.currentTarget).find('.newpassword').val("");
+    console.log(id);
+
+    $.ajax({
+      type: "POST",
+      url:"user/getUserById",
+      dataType:"JSON",
+      data : {id:id},
+      success: function(data){
+        // $(e.currentTarget).find('.description').val(data.id_backlog);
+        var data_backlog = data[(data.length)];
+        for(i=0; i<data.length; i++){
+          var currentPasword = data[i].password;
+          $(e.currentTarget).find('.password').on('keyup',function(){
+            var _this = $(this);
+            var newPassword = CryptoJS.MD5(_this.val()).toString();
+            if(newPassword == currentPasword){
+              console.log("benar")
+              $('#send_user_edit').removeAttr('disabled');
+              $('.password_error').hide();
+
+            }
+            else{
+              console.log("salah");
+              $('.password_error').html("error");
+            }
+          });
+          $(e.currentTarget).find('.nama').val(data[i].nama);
+          $(e.currentTarget).find('.user_name').val(data[i].user_name);
+
+
+
+
+        }
+        // $('#show_data').html(html);
+      }
+    })
+  });
+
+  $("#send_user_edit").on("click",function(e){
+    e.preventDefault();
+    var id = $('.id_edit_user').val();
+    var nama = $(".nama").val();
+    var user_name = $(".user_name").val();
+    var password = $(".newPassword").val();
+    var level = $(".level").val();
+    var lokasi = $(".lokasi").val();
+    console.log(name + location + id);
+    $.confirm({
+      title: 'Edit User',
+      content: 'Apakah anda yakin?',
+      buttons: {
+        confirm: function () {
+          $.ajax({
+            type: "POST",
+            url:"user/editUser",
+            dataType:"JSON",
+            data : {id:id,nama:nama,user_name:user_name,password:password,level:level,lokasi:lokasi},
+            success: function(data,s){
+              // $(".modal_edit_mechanic").modal('hide');
+               // $(this).html(s);
+              notifikasi("User berhasil di perbaharui");
+              setTimeout(function(){
+                window.location.reload()}
+                ,1000);
+            }
+          });
+        },
+        cancel: function () {
+          $.alert('Canceled!');
+        },
+
+      }
+    });
   });

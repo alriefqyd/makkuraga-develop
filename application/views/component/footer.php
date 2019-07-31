@@ -66,6 +66,7 @@
     <script src="<?php echo base_url() ?>assets/js/equipment.js"></script>
     <script src="<?php echo base_url() ?>assets/js/mechanic.js"></script>
     <script src="<?php echo base_url() ?>assets/js/pm.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/user.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <script src="<?php echo base_url() ?>assets/vendors/pnotify/dist/pnotify.js"></script>
@@ -74,6 +75,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
 
   </body>
 </html>

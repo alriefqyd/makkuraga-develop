@@ -87,7 +87,7 @@
                 </li>
                 <li><a href="<?php echo base_url() ?>pm"><i class="fa fa-cogs"></i> PM Monitoring </a></li>
                 <li><a href="<?php echo base_url() ?>mechanic"><i class="fa fa-male"></i> Mechanic </a></li>
-                <li><a href="<?php echo base_url() ?>register/add"><i class="fa fa-user"></i> Tambah Admin </a>
+                <li><a href="<?php echo base_url() ?>user"><i class="fa fa-user"></i> Tambah Admin </a>
 
                </li>
 

@@ -24,6 +24,7 @@ class User extends CI_Controller {
     		$location = $this->session->userdata('lokasi');
     		$data['table_head'] = array('Id user','Nama User','User Name','Password','Level','Lokasi','Aksi');
     		$data['user'] = $this->user_model->getUser();
+        $data['editUser'] = $this->user_model->getUser();
     		$data['title_bar'] = "User";
         $this->load->view('component/header');
         $this->load->view('user/user_view',$data);
@@ -34,12 +35,29 @@ class User extends CI_Controller {
         $fields = array(
             'nama' => $this->input->post('nama'),
             'user_name' => $this->input->post('user_name'),
-            'password' => $this->input->post('password'),
+            'password' => md5($this->input->post('password')),
             'level' => $this->input->post('level'),
             'lokasi' => $this->input->post('lokasi')
         );
         $this->db->insert('user',$fields);
-        // print_r($_POST);
-
     }
+    public function getUserById(){
+  			$id = $this->input->post('id');
+  			$data = $this->user_model->getUserById($id);
+  			echo json_encode($data);
+  	}
+    public function show(){
+        $data = $this->user_model->getUser();
+        echo json_encode($data);
+    }
+    public function editUser(){
+  			$data=$this->user_model->update_user();
+  			echo json_encode($data);
+
+  	}
+  	public function deleteUser(){
+  			$data=$this->user_model->delete_user();
+  			echo json_encode($data);
+
+  	}
 }
