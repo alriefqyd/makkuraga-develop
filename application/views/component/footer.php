@@ -1,12 +1,17 @@
  <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-      </div>
-    </div>
+<div class="pull-right">
+     Develop By Makkuraga
+   </div>
+<div class="">
+  <span id="date_time"></span>
+  <script type="text/javascript">window.onload = date_time('date_time');</script>
+
+</div>
+<div class="clearfix"></div>
+</footer>
+<!-- /footer content -->
+</div>
+</div>
 
     <!-- jQuery -->
     <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
@@ -67,6 +72,7 @@
     <script src="<?php echo base_url() ?>assets/js/mechanic.js"></script>
     <script src="<?php echo base_url() ?>assets/js/pm.js"></script>
     <script src="<?php echo base_url() ?>assets/js/user.js"></script>
+
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <script src="<?php echo base_url() ?>assets/vendors/pnotify/dist/pnotify.js"></script>

@@ -20,7 +20,20 @@
             </ul>
             <div class="clearfix"></div>
           </div>
-          <button type="button" class="btn btn-success add_backlog" data-toggle="modal" data-target=".bs-example-modal-lg">Input PM</button><hr/>
+          <?php
+          $access = 'disabled';
+          $hide = 'hidden';
+           if($level_user == 'Master Admin'           ||
+              $level_user == 'Mekanik Admin All Area' ||
+              $level_user == 'Admin All Area'         ||
+              $level_user == 'Admin Kodal'            ||
+              $level_user == 'Admin Asera'            ){
+                $access = '';
+                $hide = '';
+                ?>
+                <button type="button" class="btn btn-success add_backlog" data-toggle="modal" data-target=".bs-example-modal-lg">Input PM</button><hr/>
+        <?php
+      }?>
           <div class="modal fade bs-example-modal-lg modal-add" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
@@ -125,7 +138,7 @@
             <tr id="<?php echo $pm['id_pm']?>">
               <td><?php echo $num++ ?></td>
               <td>
-                <select id="pm" data-id="<?php echo $pm['id_pm']?>" class="form-control select js-pm" required style="width:100px">
+                <select id="pm" data-id="<?php echo $pm['id_pm']?>" <?php echo $access ?> class="form-control select js-pm" required style="width:100px">
                   <option value="">Select PM</option>
                   <option <?php echo (($pm['pm_state']) == "PM 500" ? "selected=selected" : "") ?> value="PM 500">PM 500</option>
                   <option <?php echo (($pm['pm_state']) == "PM 1000" ? "selected=selected" : "") ?> value="PM 1000">PM 1000</option>
@@ -139,13 +152,13 @@
               <td><?php echo $pm['sn'] ?></td>
               <td><?php echo $pm['location'] ?></td>
               <td>
-                <input type="text" class="to_run">
                 <?php echo $pm['to_run'] ?></td>
               <td><fieldset>
               <div class="control-group">
                 <div class="controls">
                   <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
                     <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-pm-date"
+                           <?php echo $access ?>
                            data-link="pm/editActualHoursDate" id="date" placeholder="Actual Housr Date"
                            data-table='actual_hours_date'
                             value="<?php echo ($pm['actual_hours_date'] == '0000-00-00' ? '' : date_indo($pm['actual_hours_date']))?>"
@@ -162,6 +175,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12 hidden input-hours-meter">
                 <input  id="hours_meter"
+                        <?php echo $access ?>
                         data-table='actual_hours_meter'
                         data-id="<?php echo $pm['id_pm'] ?>"
                         value="<?php echo $pm['actual_hours_meter'] ?>"
@@ -173,6 +187,7 @@
                 <div class="controls">
                   <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
                     <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-pm-date"
+                          <?php echo $access ?>
                            data-link="pm/editLastServiceDate" id="date" placeholder="Last Service Date"
                            data-table='last_service_date'
                            value="<?php echo ($pm['last_service_date'] == '0000-00-00' ? '' : date_indo($pm['last_service_date']))?>"
@@ -189,6 +204,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12 hidden input-hours-meter">
                 <input  id="hours_meter"
+                        <?php echo $access ?>
                         data-table='last_service_meter'
                         data-id="<?php echo $pm['id_pm'] ?>"
                         value="<?php echo $pm['last_service_meter'] ?>"
@@ -200,6 +216,7 @@
                 <div class="controls">
                   <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
                     <input type="text" autocomplete="off" data-id="<?php echo $pm['id_pm']?>" class="form-control has-feedback-left js-pm-date"
+                          <?php echo $access ?>
                            data-link="pm/editNextServiceDate" id="date" placeholder="Next Service Date"
                            data-table='next_service_date'
                            value="<?php echo ($pm['next_service_date'] == '0000-00-00' ? '' : date_indo($pm['next_service_date']))?>"
@@ -216,6 +233,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12 hidden input-hours-meter">
                   <input id="hours_meter"
+                        <?php echo $access ?>
                         data-table='next_service_meter'
                         data-id="<?php echo $pm['id_pm'] ?>"
                         value="<?php echo $pm['next_service_meter'] ?>"

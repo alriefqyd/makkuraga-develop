@@ -23,9 +23,12 @@ class Equipment extends CI_Controller {
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
         $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Priority','Status','Details');
-
-        if($level_user == 'Master Admin')
-        {
+        $data['level_user'] = $level_user;
+        if($level_user == 'Master Admin'              ||
+           $level_user == 'Inventory Admin All Area'  ||
+           $level_user == 'Admin All Area'            ||
+           $level_user == 'Mekanik Admin All Area'    ||
+           $level_user == 'User All Area'             ){
             $data['backlog'] = $this->backlog_model->getAllDataMaster("backlog");
         }
         else
@@ -41,10 +44,13 @@ class Equipment extends CI_Controller {
     {
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
+        $data['level_user'] = $level_user;
         $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Description','Priority','Status','Mekanik','Detail');
-
-        if($level_user == 'Master Admin')
-        {
+        if($level_user == 'Master Admin'              ||
+           $level_user == 'Inventory Admin All Area'  ||
+           $level_user == 'Admin All Area'            ||
+           $level_user == 'Mekanik Admin All Area'    ||
+           $level_user == 'User All Area'             ){
             $data['progress'] = $this->backlog_model->getAllDataMaster("onprogress");
         }
         else

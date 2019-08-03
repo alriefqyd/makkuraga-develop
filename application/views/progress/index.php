@@ -1,3 +1,15 @@
+<?php
+  $access = 'disabled';
+  $hide = 'hidden';
+   if($level_user == 'Master Admin'           ||
+      $level_user == 'Mekanik Admin All Area' ||
+      $level_user == 'Admin All Area'         ||
+      $level_user == 'Admin Kodal'            ||
+      $level_user == 'Admin Asera'            ){
+        $access = '';
+        $hide = '';
+}
+?>
  <div class="right_col" role="main">
   <div class="">
     <div class="page-title">
@@ -55,7 +67,7 @@
                     <div class="control-group">
                       <div class="controls">
                         <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                          <input type="text" autocomplete="off" data-id="<?php echo $backlog['id_backlog']?>" class="form-control has-feedback-left js-up_date" id="date" placeholder="Up Date" name="up_date" aria-describedby="inputSuccess2Status3" style="width:160px">
+                          <input type="text" <?php echo $access ?> autocomplete="off" data-id="<?php echo $backlog['id_backlog']?>" class="form-control has-feedback-left js-up_date" id="date" placeholder="Up Date" name="up_date" aria-describedby="inputSuccess2Status3" style="width:160px">
                           <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                           <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                         </div>
@@ -72,7 +84,7 @@
                       <i class="fa fa-edit"></i> Edit</a></h4>
 
                   </td>
-                  <td><select id="prioritas" data-id="<?php echo $backlog['id_backlog']?>" class="form-control select js-prioritas" required style="width:100px">
+                  <td><select id="prioritas" <?php echo $access ?> data-id="<?php echo $backlog['id_backlog']?>" class="form-control select js-prioritas" required style="width:100px">
                     <option <?php echo (($backlog['priority']) == "P1" ? "selected=selected" : "") ?>value="P1">P1</option>
                     <option <?php echo (($backlog['priority']) == "P2" ? "selected=selected" : "") ?> value="P2">P2</option>
                     <option <?php echo (($backlog['priority']) == "P3" ? "selected=selected" : "") ?>value="P3">P3</option>
@@ -122,9 +134,9 @@
                     </div>
                     <div class="modal-body">
                     <center>
-                    <select id="mechanic" data-id="" name="mechanic_name" class="form-control js-mechanic" required style="width:500px">
+                    <select id="mechanic" <?php echo $access ?> data-id="" name="mechanic_name" class="form-control js-mechanic" required style="width:500px">
                     <?php foreach($mechanic as $mechanic){ ?>
-                      <option value=<?php echo $mechanic['id']?>><?php echo $mechanic['name']?></option>
+                      <option <?php echo (($backlog['mechanic']) == $mechanic['id'] ? "selected=selected" : "") ?> value=<?php echo $mechanic['id']?>><?php echo $mechanic['name']?></option>
                     <?php } ?>
                     </select>
                     <input type="hidden" class="id_add_mechanic" name="id_add_mechanic"/>
@@ -132,7 +144,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary js-save_mechanic">Save changes</button>
+                      <button type="button" <?php echo $access  ?> class="btn btn-primary js-save_mechanic <?php echo $hide ?>">Save changes</button>
                     </div>
                   </div>
                 </div>
@@ -150,7 +162,6 @@
               <div class="modal-body">
                 <div class="row">
                   <div class="col-md-12 col-sm-12 col-xs-12">
-
                       <div class="x_content">
                         <div class="row">
                           <div class="col-md-12 col-sm-12 col-xs-12">
@@ -158,13 +169,13 @@
                             <div class="x_content">
                              <div class="item form-group">
                              <div class="col-md-12 col-sm-12 col-xs-12">
-                              <textarea id="textarea" data-id="" rows="6" required="required" name="status" class="form-control col-md-7 col-xs-12 description"></textarea>
+                              <textarea id="textarea" data-id="" <?php echo $access ?> rows="6" required="required" name="status" class="form-control col-md-7 col-xs-12 description"></textarea>
                             </div>
                             <input type="hidden" class="id_description" name="id_description"/>
                           </div>
                         </div>
                         <div class="col-md-5">
-                            <input name="submit_description" type="submit" class="btn btn-success submit_description" value="Tambah Data">
+                            <input name="submit_description" <?php echo $access ?>  type="submit" class="btn btn-success submit_description <?php echo $hide ?>" value="Tambah Data">
                         </div>
                       </div>
                     </div>

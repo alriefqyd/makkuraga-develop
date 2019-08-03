@@ -85,8 +85,10 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="prioritas" id="heard" class="form-control lokasi" style="width:100%">
-                                <option value="Asera">Asera</option>
-                                <option value="Kodal">Kodal</option>
+                                  <option value="">Pilih Lokasi</option>
+                                  <option value="Pusat">Pusat</option>
+                                  <option value="Asera">Asera</option>
+                                  <option value="Kodal">Kodal</option>
                                </select>
                                  </div>
                               </div>
@@ -136,7 +138,7 @@
                 data-id="<?php echo $user['id'] ?>"
                 data-target=".modal_edit_user">
                 <i class="fa fa-edit"></i> Edit</a> ||
-                <a href="#" class="delete_mechanic"
+                <a href="#" class="delete_user"
                 data-id="<?php echo $user['id']?>">
                 <i class="fa fa-trash"></i>Delete</a>
               </td>
@@ -176,18 +178,18 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Masukkan Nama <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12 nama" name="nama" data-rule-required="true" type="text">
+                          <input id="name" class="form-control col-md-7 col-xs-12 nama_edit" name="nama" data-rule-required="true" type="text">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user_name">Masukkan User Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12 user_name" autocomplete="off" required="required" type="text">
+                          <input id="name" class="form-control col-md-7 col-xs-12 user_name_edit" autocomplete="off" required="required" type="text">
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Masukkan Password Lama <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12 old_password" for="number">Masukkan Password Lama <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" data-validate-length="6,8" autocomplete="off" class="form-control col-md-7 col-xs-12 password" required="required">
@@ -198,14 +200,14 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Masukkan Password Baru <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="password" name="password" class="form-control col-md-7 col-xs-12 newpassword" required="required">
+                          <input type="password" name="newpassword" class="form-control col-md-7 col-xs-12 newpassword" required="required">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Level <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select name="status" id="heard" class="form-control level" style="width:100%">
+                        <select name="status" id="heard" class="form-control level_edit" style="width:100%">
                         <option value="Master Admin">Master Admin</option>
                         <option value="Inventory Admin All Area">Inventory Admin All Area</option>
                         <option value="Mekanik Admin All Area">Mekanik Admin All Area</option>
@@ -224,13 +226,15 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Masukkan Lokasi <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select name="prioritas" id="heard" class="form-control lokasi" style="width:100%">
+                        <select name="lokasi" id="heard" class="form-control lokasi_edit" style="width:100%">
+                        <option value="">Pilih Lokasi</option>
+                        <option value="Pusat">Pusat</option>
                         <option value="Asera">Asera</option>
                         <option value="Kodal">Kodal</option>
                        </select>
                          </div>
                       </div>
-                      <input type="text" class="id_edit_user">
+                      <input type="hidden" class="id_edit_user">
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">

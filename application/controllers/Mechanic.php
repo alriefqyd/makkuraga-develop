@@ -14,6 +14,9 @@ class Mechanic extends CI_Controller {
 			$this->session->set_flashdata('flash_data', 'You dont have access!');
 			redirect('login');
 		}
+		if ($this->session->userdata('level') !== 'Master Admin') {
+			redirect('404');
+		}
 
 	}
 	public function index()

@@ -140,8 +140,13 @@
  												<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Masukkan Lokasi Mechanic <span class="required">*</span>
  												</label>
  												<div class="col-md-6 col-sm-6 col-xs-12">
- 													<input id="name" class="form-control col-md-7 col-xs-12 edit_location_mechanic" name="location" required="required" type="text">
- 												</div>
+                          <select id="mechanic" data-id="" name="mechanic_name" class="form-control edit_location_mechanic" required style="width:100%">
+                            <option value="Pusat">Pusat</option>
+                            <option value="Asera">Asera</option>
+                            <option value="Kodal">Kodal</option>
+                          </select>
+                        </div>
+
  											</div>
 											<input type="hidden" class="id_edit_mechanic">
  											<div class="ln_solid"></div>

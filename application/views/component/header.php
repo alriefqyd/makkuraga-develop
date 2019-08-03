@@ -39,6 +39,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css"/>
+  <script src="<?php echo base_url() ?>assets/js/clock.js"></script>
 
 
 
@@ -50,7 +51,7 @@
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-            <a href="<?php echo base_url() ?>" class="site_title"><i class="fa fa-paw"></i> <span>Makkuraga Operation Apps</span></a>
+            <a href="<?php echo base_url() ?>beranda" class="site_title"><i class="fa fa-paw"></i> <span>Makkuraga Operation Apps</span></a>
           </div>
 
           <div class="clearfix"></div>
@@ -86,9 +87,13 @@
                   </ul>
                 </li>
                 <li><a href="<?php echo base_url() ?>pm"><i class="fa fa-cogs"></i> PM Monitoring </a></li>
+                <?php
+                if($this->session->userdata('level') == 'Master Admin'){
+                 ?>
                 <li><a href="<?php echo base_url() ?>mechanic"><i class="fa fa-male"></i> Mechanic </a></li>
                 <li><a href="<?php echo base_url() ?>user"><i class="fa fa-user"></i> Tambah Admin </a>
-
+                <?php
+                } ?>
                </li>
 
              </div>

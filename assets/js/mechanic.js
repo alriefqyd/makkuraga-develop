@@ -67,7 +67,7 @@ $("#send_mechanic").on('click',function(event){
         });
       }
 
-      $('.modal_edit_user').on('show.bs.modal', function(e) {
+      $('.modal_edit_mechanic').on('show.bs.modal', function(e) {
         var id = $(e.relatedTarget).data('id');
         $(e.currentTarget).find('.id_edit_mechanic').val(id);
         console.log(id);
@@ -80,7 +80,7 @@ $("#send_mechanic").on('click',function(event){
             // $(e.currentTarget).find('.description').val(data.id_backlog);
             var data_backlog = data[(data.length)];
             for(i=0; i<data.length; i++){
-              $(e.currentTarget).find('.edit_name_mechanic').val(data[i].nama);
+              $(e.currentTarget).find('.edit_name_mechanic').val(data[i].name);
               $(e.currentTarget).find('.edit_location_mechanic').val(data[i].location);
             }
             // $('#show_data').html(html);
@@ -90,7 +90,7 @@ $("#send_mechanic").on('click',function(event){
         })
       });
 
-      $(".send_user_edit").on("click",function(e){
+      $(".edit_mechanic").on("click",function(e){
         e.preventDefault();
         var name = $(".edit_name_mechanic").val();
         var location = $(".edit_location_mechanic").val();
@@ -107,8 +107,9 @@ $("#send_mechanic").on('click',function(event){
                 dataType:"JSON",
                 data : {id:id,name:name,location:location},
                 success: function(data,s){
-                  // $(".modal_edit_mechanic").modal('hide');
+                  $(".modal_edit_mechanic").modal('hide');
                    // $(this).html(s);
+
                   notifikasi("Mekanik berhasil di perbaharui");
                   setTimeout(function(){
                     window.location.reload()}

@@ -24,14 +24,9 @@ class Pm extends CI_Controller {
         $location = $this->session->userdata('lokasi');
         $data['table_head'] = array('No','PM State','ID', 'Model', 'SN', 'Location', 'To Run','Prediction','Last Service','Next Service');
 
-        if($level_user == 'Master Admin')
-        {
-            $data['pm'] = $this->pm_model->getAllData();
-        }
-        else
-        {
-            $data['pm'] = $this->pm_model->getAllData();
-        }
+        $data['level_user'] = $level_user;
+        $data['pm'] = $this->pm_model->getAllData();
+
         $data['title_bar'] = "PM";
         $this->load->view('component/header');
         $this->load->view('pm/index',$data);

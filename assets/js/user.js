@@ -69,9 +69,9 @@ $("#send_user").on('click',function(event){
           data.lokasi,
           '<a href="" data-toggle="modal"'+
             'data-id="'+data.id+'"'+
-            'data-target=".modal_edit_mechanic">'+
-            '<i class="fa fa-edit"></i> Edit</a> ||'+
-            '<a href="#" class="delete_mechanic"'+
+            'data-target=".modal_edit_user">'+
+            '<i class="fa fa-edit"></i> Edit</a> || '+
+            '<a onclick="delete_user($(this))" href="#" class="delete_user"'+
             'data-id="'+data.id+'">'+
             '<i class="fa fa-trash"></i>Delete</a>'
         ] ).node().id = data.id;
@@ -107,19 +107,14 @@ $("#send_user").on('click',function(event){
               console.log("benar")
               $('#send_user_edit').removeAttr('disabled');
               $('.password_error').hide();
-
             }
             else{
               console.log("salah");
               $('.password_error').html("error");
             }
           });
-          $(e.currentTarget).find('.nama').val(data[i].nama);
-          $(e.currentTarget).find('.user_name').val(data[i].user_name);
-
-
-
-
+          $(e.currentTarget).find('.nama_edit').val(data[i].nama);
+          $(e.currentTarget).find('.user_name_edit').val(data[i].user_name);
         }
         // $('#show_data').html(html);
       }
@@ -129,12 +124,14 @@ $("#send_user").on('click',function(event){
   $("#send_user_edit").on("click",function(e){
     e.preventDefault();
     var id = $('.id_edit_user').val();
-    var nama = $(".nama").val();
-    var user_name = $(".user_name").val();
-    var password = $(".newPassword").val();
-    var level = $(".level").val();
-    var lokasi = $(".lokasi").val();
-    console.log(name + location + id);
+    var nama = $(".nama_edit").val();
+    var user_name = $(".user_name_edit").val();
+    var password = $(".newpassword").val();
+    var level = $(".level_edit").val();
+    var lokasi = $(".lokasi_edit").val();
+    console.log("mana");
+    console.log(password);
+    console.log(nama);
     $.confirm({
       title: 'Edit User',
       content: 'Apakah anda yakin?',
@@ -148,6 +145,7 @@ $("#send_user").on('click',function(event){
             success: function(data,s){
               // $(".modal_edit_mechanic").modal('hide');
                // $(this).html(s);
+              console.log(data.user_name);
               notifikasi("User berhasil di perbaharui");
               setTimeout(function(){
                 window.location.reload()}
@@ -162,3 +160,64 @@ $("#send_user").on('click',function(event){
       }
     });
   });
+
+  $(".delete_user").on("click",function(e){
+    // e.preventDefault();
+    var id = $(this).data("id");
+    var table = $('#datatable').DataTable();
+    // var table = $('#example').DataTable();
+    $.confirm({
+      title: 'Hapus User',
+      content: 'Apakah anda yakin?',
+      buttons: {
+        confirm: function () {
+          $.ajax({
+            type: "POST",
+            url:"user/deleteUser",
+            dataType:"JSON",
+            data : {id:id},
+            success:
+              setTimeout(function(){
+                table.rows( "#"+id ).remove().draw();
+                notifikasi("Data berhasil dihapus");
+              },300)
+          });
+        },
+        cancel: function () {
+          $.alert('Canceled!');
+        },
+
+      }
+    });
+
+  })
+
+  function delete_user(_this){
+    // e.preventDefault();
+    var id = _this.data("id");
+    var table = $('#datatable').DataTable();
+    // var table = $('#example').DataTable();
+    $.confirm({
+      title: 'Hapus User',
+      content: 'Apakah anda yakin?',
+      buttons: {
+        confirm: function () {
+          $.ajax({
+            type: "POST",
+            url:"user/deleteUser",
+            dataType:"JSON",
+            data : {id:id},
+            success:
+              setTimeout(function(){
+                table.rows( "#"+id ).remove().draw();
+                notifikasi("Data berhasil dihapus");
+              },300)
+          });
+        },
+        cancel: function () {
+          $.alert('Canceled!');
+        },
+
+      }
+    });
+  }

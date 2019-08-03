@@ -20,7 +20,19 @@
             </ul>
             <div class="clearfix"></div>
           </div>
+          <?php
+            $access = 'disabled';
+             if($level_user == 'Master Admin'           ||
+                $level_user == 'Mekanik Admin All Area' ||
+                $level_user == 'Admin All Area'         ||
+                $level_user == 'Admin Kodal'            ||
+                $level_user == 'Admin Asera'            ){
+                  $access = ''
+          ?>
           <button type="button" class="btn btn-success add_backlog" data-toggle="modal" data-target=".bs-example-modal-lg">Input Backlog</button><hr/>
+          <?php
+          }
+          ?>
           <div class="modal fade bs-example-modal-lg modal-add" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
@@ -132,7 +144,6 @@
           </tr>
        </thead>
        <tbody class="body-backlog">
-
             <?php
               $num=1;
               foreach($backlog as $backlog)
@@ -144,7 +155,7 @@
               <div class="control-group">
                 <div class="controls">
                   <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                    <input type="text" autocomplete="off" data-id="<?php echo $backlog['id_backlog']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:160px" >
+                    <input type="text" autocomplete="off" <?php echo $access ?> data-id="<?php echo $backlog['id_backlog']?>" class="form-control has-feedback-left js-down_date" id="date" placeholder="Down Date" name="down_date" aria-describedby="inputSuccess2Status3" style="width:160px" >
                     <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                     <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                   </div>
@@ -156,7 +167,7 @@
               <td><?php echo $backlog['model'] ?></td>
               <td><?php echo $backlog['hours_meter'] ?></td>
               <td><?php echo $backlog['indication'] ?></td>
-              <td><select id="prioritas" data-id="<?php echo $backlog['id_backlog']?>" class="form-control select js-prioritas" style="width:80%;" required>
+              <td><select id="prioritas" <?php echo $access ?> data-id="<?php echo $backlog['id_backlog']?>" class="form-control select js-prioritas" style="width:80%;" required>
                   <option <?php echo (($backlog['priority']) == "P1" ? "selected=selected" : "") ?>value="P1">P1</option>
                   <option <?php echo (($backlog['priority']) == "P2" ? "selected=selected" : "") ?> value="P2">P2</option>
                   <option <?php echo (($backlog['priority']) == "P3" ? "selected=selected" : "") ?>value="P3">P3</option>

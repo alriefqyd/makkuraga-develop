@@ -28,24 +28,24 @@ class User_model extends CI_Model
        $id=$this->input->post('id');
        $nama=$this->input->post('nama');
        $user_name=$this->input->post('user_name');
-       $password=md5($this->input->post('password'));
+       $password=$this->input->post('password');
        $level=$this->input->post('level');
        $lokasi=$this->input->post('lokasi');
 
        $this->db->set('nama', $nama);
        $this->db->set('user_name', $user_name);
-       $this->db->set('password', $password);
+       $this->db->set('password', md5($password));
        $this->db->set('level', $level);
        $this->db->set('lokasi', $lokasi);
        $this->db->where('id', $id);
        $result=$this->db->update('user');
        return $result;
    }
-   public function delete_mekanik()
+   public function delete_user()
    {
        $id=$this->input->post('id');
        $this->db->where('id', $id);
-       $this->db->delete('mechanic');
+       $this->db->delete('user');
        return $result;
    }
    // public function update_user()
@@ -61,11 +61,4 @@ class User_model extends CI_Model
    //     $result = $this->db->update_where('user',$id);
    //     return $result;
    // }
-   public function delete_user()
-   {
-       $id=$this->input->post('id');
-       $this->db->where('id', $id);
-       $this->db->delete('mechanic');
-       return $result;
-   }
 }

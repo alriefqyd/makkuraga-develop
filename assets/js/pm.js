@@ -292,7 +292,9 @@ function pm_date_js(e){
       dataType:"JSON",
       data : {id_pm:id_pm,table:table,hm:hm},
       success:function(data){
-        console.log(data);
+        setTimeout(function(){
+          window.location.reload()}
+          ,1000);
         notifikasi("HM berhasil di perbaharui");
       }
     })

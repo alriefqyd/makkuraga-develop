@@ -16,6 +16,9 @@ class User extends CI_Controller {
             </button>Anda belum login</div>');
             redirect('login');
         }
+        if ($this->session->userdata('level') !== 'Master Admin') {
+    			redirect('404');
+    		}
 
     }
     public function index()
