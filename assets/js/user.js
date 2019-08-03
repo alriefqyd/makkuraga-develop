@@ -110,7 +110,7 @@ $("#send_user").on('click',function(event){
             }
             else{
               console.log("salah");
-              $('.password_error').html("error");
+              $('.password_error').html("<div class=alert alert-danger>password lama salah</div>");
             }
           });
           $(e.currentTarget).find('.nama_edit').val(data[i].nama);
