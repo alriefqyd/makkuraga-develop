@@ -208,7 +208,7 @@
 
       </tbody>
     </table>
- <!--   <div class="modal fade bs-example-modal-lg modal_edit_operation" role="dialog" aria-hidden="true">
+   <div class="modal fade bs-example-modal-lg modal_edit_operation" role="dialog" aria-hidden="true">
      <div class="modal-dialog modal-lg">
        <div class="modal-content">
          <div class="modal-header">
@@ -311,7 +311,7 @@
   </div>
 </div>
 </div>
-</div> -->
+</div>
 
 </div>
 </div>
