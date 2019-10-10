@@ -57,9 +57,13 @@
           <div class="clearfix"></div>
 
           <!-- menu profile quick info -->
+          <?php
+          $user = $this->user_model->getUserById($this->session->userdata('id'));
+          foreach ($user as $user) {
+          ?>
           <div class="profile clearfix">
             <div class="profile_pic">
-              <img src="<?php echo base_url() ?>assets/images/user.png" alt="..." class="img-circle profile_img">
+              <img style="height:90px;width:70px" src="<?php echo base_url() ?>assets/images/<?php echo $user['foto'] ?>" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
@@ -67,6 +71,8 @@
               <?php echo $this->session->userdata('lokasi')?>
             </div>
           </div>
+          <?php
+          } ?>
           <!-- /menu profile quick info -->
 
           <br />
@@ -76,7 +82,15 @@
             <div class="menu_section">
               <h3>Menu</h3>
               <ul class="nav side-menu">
+                <li><a><i class="fa fa-gear"></i> Operation Monitoring<span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
 
+                    <li><a href="<?php echo base_url() ?>operation/daily-monitoring">Daily Monitoring</a></li>
+                    <li><a href="<?php echo base_url() ?>operation/daily-log">Daily Log</a></li>
+
+
+                  </ul>
+                </li>
                 <li><a><i class="fa fa-calendar"></i> Equipment History<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
 
@@ -91,10 +105,22 @@
                 if($this->session->userdata('level') == 'Master Admin'){
                  ?>
                 <li><a href="<?php echo base_url() ?>mechanic"><i class="fa fa-male"></i> Mechanic </a></li>
-                <li><a href="<?php echo base_url() ?>user"><i class="fa fa-user"></i> Tambah Admin </a>
+                <li><a href="<?php echo base_url() ?>alat"><i class="fa fa-briefcase"></i> Alat </a></li>
+                <li><a href="<?php echo base_url() ?>user"><i class="fa fa-group"></i> Tambah Admin </a></li>
                 <?php
-                } ?>
-               </li>
+                } 
+                if($this->session->userdata('level') == 'Master Admin' || $this->session->userdata('level') == 'Inventory Admin All Area' || $this->session->userdata('level') == 'Mekanik Admin All Area' || $this->session->userdata('level') == 'Admin Kodal' || $this->session->userdata('level') == 'Admin All Area' || 'Inventory Admin Kodal' | 'Inventory Admin Asera' ){
+                ?>
+                <li><a><i class="fa fa-cubes"></i> Inventory<span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="<?php echo base_url() ?>inventory/sell">Item</a></li>
+                    <li><a href="<?php echo base_url() ?>inventory/sell-log">Sell Log</a></li>
+                    <li><a href="<?php echo base_url() ?>inventory/transfer">Transfer Item</a></li>
+                    <li><a href="<?php echo base_url() ?>inventory/transfer-log">Transfer Log</a></li>
+                  </ul>
+                </li>
+              <?php } ?>
+               <li><a href="<?php echo base_url() ?>user/detail/<?php echo $this->session->userdata('id') ?>"><i class="fa fa-user"></i>Profil <?php echo $this->session->userdata("nama") ?> </a></li>
 
              </div>
 

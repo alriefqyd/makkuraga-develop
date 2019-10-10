@@ -25,8 +25,11 @@ class Backlog_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('backlog');
+        $this->db->join('mechanic', 'mechanic.id = backlog.mechanic', 'left outer');
+        $this->db->join('alat', 'alat.id = backlog.ID', 'left outer');
         $this->db->where("history",$history);
-        $this->db->where("location",$location);
+        $this->db->where("alat.lokasi",$location);
+       
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -34,6 +37,8 @@ class Backlog_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('backlog');
+        $this->db->join('mechanic', 'mechanic.id = backlog.mechanic', 'left outer');
+        $this->db->join('alat', 'alat.id = backlog.ID', 'left outer');
         $this->db->where("history",$history);
         $query = $this->db->get();
         return $query->result_array();
@@ -59,9 +64,10 @@ class Backlog_model extends CI_Model
     {
         $id_backlog=$this->input->post('id_backlog');
         $down_date=$this->input->post('down_date');
+        $history = $this->input->post('history');
 
         $this->db->set('down_date', $down_date);
-        $this->db->set('history', 'onprogress');
+        $this->db->set('history', $history);
         $this->db->where('id_backlog', $id_backlog);
         $result=$this->db->update('backlog');
         return $result;
@@ -96,6 +102,23 @@ class Backlog_model extends CI_Model
         $this->db->set('mechanic', $mechanic);
         $this->db->where('id_backlog', $id_backlog);
         $result=$this->db->update('backlog');
+        return $result;
+    }
+    public function update_status()
+    {
+        $id_backlog=$this->input->post('id_backlog');
+        $status=$this->input->post('status');
+
+        $this->db->set('status', $status);
+        $this->db->where('id_backlog', $id_backlog);
+        $result=$this->db->update('backlog');
+        return $result;
+    }
+    public function delete_backlog()
+    {
+        $id=$this->input->post('id_backlog');
+        $this->db->where('id_backlog', $id);
+        $this->db->delete('backlog');
         return $result;
     }
 }

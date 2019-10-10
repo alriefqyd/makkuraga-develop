@@ -23,23 +23,25 @@ class User_model extends CI_Model
        $query = $this->db->get();
        return $query->result_array();
    }
-   public function update_user()
+   public function update_user($id,$foto)
    {
-       $id=$this->input->post('id');
-       $nama=$this->input->post('nama');
-       $user_name=$this->input->post('user_name');
-       $password=$this->input->post('password');
-       $level=$this->input->post('level');
-       $lokasi=$this->input->post('lokasi');
+     // $nama=$this->input->post('nama');
+     // $user_name=$this->input->post('user_name');
+     // $password=$this->input->post('password');
+     // $level=$this->input->post('level');
+     // $lokasi=$this->input->post('lokasi');
 
-       $this->db->set('nama', $nama);
-       $this->db->set('user_name', $user_name);
-       $this->db->set('password', md5($password));
-       $this->db->set('level', $level);
-       $this->db->set('lokasi', $lokasi);
-       $this->db->where('id', $id);
-       $result=$this->db->update('user');
-       return $result;
+     // $this->db->set('nama', $nama);
+     // $this->db->set('user_name', $user_name);
+     // $this->db->set('password', md5($password));
+     // $this->db->set('level', $level);
+     // $this->db->set('lokasi', $lokasi);
+     $data = array (
+       'foto' => $foto
+     );
+
+     $this->db->where('id', $id);// cara melakukan query where
+     return $this->db->update('user',$data);
    }
    public function delete_user()
    {

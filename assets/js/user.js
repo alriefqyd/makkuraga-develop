@@ -221,3 +221,35 @@ $("#send_user").on('click',function(event){
       }
     });
   }
+
+  $(".notif").ready(function () {
+    if($(".notif").data("var")){
+      console.log($(".notif").data("var"))
+      notifikasi("Foto berhasil di update")
+    } else if ($(".notif").data("var") == false) {
+      new PNotify({
+        title: 'Error',
+        text: 'Gagal update foto',
+        type: 'error',
+        styling: 'bootstrap3'
+      });
+    }
+  });
+
+  $('.foto').bind('change', function() {
+
+  //this.files[0].size gets the size of your file.
+  var size_image = this.files[0].size;
+  var type = this.files[0].type;
+  if(size_image > 2048000){
+    $(this).closest('.js-input-foto').siblings('.error').html('Ukuran file yang dimasukkan tidak lebih dari 2MB');
+    $('.btn-edit-foto').attr('disabled','disabled');
+  } else if (type !== "image/png" && type !== "image/jpeg" ) {
+    $(this).closest('.js-input-foto').siblings('.error').html('Pastikan file yang dimasukkan adalah jpg/png');
+    $('.btn-edit-foto').attr('disabled','disabled');
+  } else {
+    $(this).closest('.js-input-foto').siblings('.error').html('');
+    $('.btn-edit-foto').removeAttr('disabled','disabled');
+  }
+
+});

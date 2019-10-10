@@ -64,7 +64,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Level <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select name="status" id="heard" class="form-control level" style="width:100%">
+                                <select name="status" id="heard" class="form-control select level" style="width:100%">
                                 <option value="Master Admin">Master Admin</option>
                                 <option value="Inventory Admin All Area">Inventory Admin All Area</option>
                                 <option value="Mekanik Admin All Area">Mekanik Admin All Area</option>
@@ -78,13 +78,13 @@
                                 <option value="User All Area">User All Area</option>
 
                                </select>
-                                 </div>
+                              </div>
                               </div>
                               <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Masukkan Lokasi <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select name="prioritas" id="heard" class="form-control lokasi" style="width:100%">
+                                <select name="prioritas" id="heard" class="form-control select lokasi" style="width:100%">
                                   <option value="">Pilih Lokasi</option>
                                   <option value="Pusat">Pusat</option>
                                   <option value="Asera">Asera</option>

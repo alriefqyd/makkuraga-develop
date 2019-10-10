@@ -12,6 +12,7 @@ class Pm extends CI_Controller {
         $this->load->model('mechanic_model');
         $this->load->helper('url_helper','form');
         $this->load->helper('tgl_indo');
+        $this->load->model('alat_model');
         if(empty($this->session->userdata('id'))) {
             $this->session->set_flashdata('flash_data', 'You dont have access!');
             redirect('login');

@@ -1,0 +1,84 @@
+INSERT INTO resource (version, category_type, controller_name, name, resource_order, slug)
+				VALUES(0, CPS, 'adminCpsPage', 'CPS Page', 30, 'cps-page');
+
+SELECT * FROM resource WHERE controller_name = 'adminCpsPage'
+
+INSERT INTO role (version, authority, created_by_id, date_created, default_role, description, display, last_updated, modified_by_id, name, status)
+			VALUES(0, 'ROLE_CPS_PAGE_ASIA', NULL, NOW(), 0, 'CPS Page Asia', 1, NOW(), NULL, 'CPS Page Asia', 'ACTIVE');
+
+INSERT INTO role (version, authority, created_by_id, date_created, default_role, description, display, last_updated, modified_by_id, name, status)
+			VALUES(0, 'ROLE_CPS_PAGE_SINGAPORE', NULL, NOW(), 0, 'CPS Page Asia Singapore', 1, NOW(), NULL, 'CPS Page Singapore', 'ACTIVE');
+
+INSERT INTO role (version, authority, created_by_id, date_created, default_role, description, display, last_updated, modified_by_id, name, status)
+			VALUES(0, 'ROLE_CPS_PAGE_INDIA', NULL, NOW(), 0, 'CPS Page Asia India', 1, NOW(), NULL, 'CPS Page India', 'ACTIVE');
+
+INSERT INTO role (version, authority, created_by_id, date_created, default_role, description, display, last_updated, modified_by_id, name, status)
+			VALUES(0, 'ROLE_CPS_PAGE_TAIWAN', NULL, NOW(), 0, 'CPS Page Asia Taiwan', 1, NOW(), NULL, 'CPS Page Taiwan', 'ACTIVE');
+
+INSERT INTO role (version, authority, created_by_id, date_created, default_role, description, display, last_updated, modified_by_id, name, status)
+			VALUES(0, 'ROLE_CPS_PAGE_INDONESIA', NULL, NOW(), 0, 'CPS Page Asia Indonesia', 1, NOW(), NULL, 'CPS Page Indonesia', 'ACTIVE');
+
+INSERT INTO role (version, authority, created_by_id, date_created, default_role, description, display, last_updated, modified_by_id, name, status)
+			VALUES(0, 'ROLE_CPS_PAGE_MALAYSIA', NULL, NOW(), 0, 'CPS Page Asia Malaysia', 1, NOW(), NULL, 'CPS Page Malaysia', 'ACTIVE');
+
+INSERT INTO role (version, authority, created_by_id, date_created, default_role, description, display, last_updated, modified_by_id, name, status)
+			VALUES(0, 'ROLE_CPS_PAGE_THAILAND', NULL, NOW(), 0, 'CPS Page Asia Thailand', 1, NOW(), NULL, 'CPS Page Thailand', 'ACTIVE');
+
+INSERT INTO role (version, authority, created_by_id, date_created, default_role, description, display, last_updated, modified_by_id, name, status)
+			VALUES(0, 'ROLE_CPS_PAGE_VIETNAM', NULL, NOW(), 0, 'CPS Page Asia Vietnam', 1, NOW(), NULL, 'CPS Page Vietnam', 'ACTIVE');
+
+INSERT INTO role (version, authority, created_by_id, date_created, default_role, description, display, last_updated, modified_by_id, name, status)
+			VALUES(0, 'ROLE_CPS_PAGE_PHILIPPINES', NULL, NOW(), 0, 'CPS Page Asia Philippines', 1, NOW(), NULL, 'CPS Page Philippines', 'ACTIVE');
+
+INSERT INTO role (version, authority, created_by_id, date_created, default_role, description, display, last_updated, modified_by_id, name, status)
+			VALUES(0, 'ROLE_CPS_PAGE_HONGKONG', NULL, NOW(), 0, 'CPS Page Asia Hongkong', 1, NOW(), NULL, 'CPS Page Hongkong', 'ACTIVE');
+
+INSERT INTO permission (version, action, action_name, category_id, display_group, language_id, resource_id, role_id, site_id)
+					VALUES(0, '*', '*', NULL, 'Asia-001', NULL, (SELECT id FROM resource WHERE controller_name = "adminCpsEquipment" LIMIT 1), (SELECT id FROM role where authority = "ROLE_POPUP_ASIA" LIMIT 1), 1);
+
+INSERT INTO permission (version, action, action_name, category_id, display_group, language_id, resource_id, role_id, site_id)
+					VALUES(0, '*', '*', NULL, 'Singapore-001', NULL, (SELECT id FROM resource WHERE controller_name = "adminCpsEquipment" LIMIT 1), (SELECT id FROM role where authority = "ROLE_POPUP_SINGAPORE" LIMIT 1), 2);
+
+INSERT INTO permission (version, action, action_name, category_id, display_group, language_id, resource_id, role_id, site_id)
+					VALUES(0, '*', '*', NULL, 'India-001', NULL, (SELECT id FROM resource WHERE controller_name = "adminCpsEquipment" LIMIT 1), (SELECT id FROM role where authority = "ROLE_POPUP_INDIA" LIMIT 1), 3);
+
+INSERT INTO permission (version, action, action_name, category_id, display_group, language_id, resource_id, role_id, site_id)
+					VALUES(0, '*', '*', NULL, 'Taiwan-001', NULL, (SELECT id FROM resource WHERE controller_name = "adminCpsEquipment" LIMIT 1), (SELECT id FROM role where authority = "ROLE_POPUP_TAIWAN" LIMIT 1), 4);
+
+INSERT INTO permission (version, action, action_name, category_id, display_group, language_id, resource_id, role_id, site_id)
+					VALUES(0, '*', '*', NULL, 'Indonesia-001', NULL, (SELECT id FROM resource WHERE controller_name = "adminCpsEquipment" LIMIT 1), (SELECT id FROM role where authority = "ROLE_POPUP_INDONESIA" LIMIT 1), 5);
+
+INSERT INTO permission (version, action, action_name, category_id, display_group, language_id, resource_id, role_id, site_id)
+					VALUES(0, '*', '*', NULL, 'Malaysia-001', NULL, (SELECT id FROM resource WHERE controller_name = "adminCpsEquipment" LIMIT 1), (SELECT id FROM role where authority = "ROLE_POPUP_MALAYSIA" LIMIT 1), 6);
+
+INSERT INTO permission (version, action, action_name, category_id, display_group, language_id, resource_id, role_id, site_id)
+					VALUES(0, '*', '*', NULL, 'Thailand-001', NULL, (SELECT id FROM resource WHERE controller_name = "adminCpsEquipment" LIMIT 1), (SELECT id FROM role where authority = "ROLE_POPUP_THAILAND" LIMIT 1), 7);
+
+INSERT INTO permission (version, action, action_name, category_id, display_group, language_id, resource_id, role_id, site_id)
+					VALUES(0, '*', '*', NULL, 'Vietnam-001', NULL, (SELECT id FROM resource WHERE controller_name = "adminCpsEquipment" LIMIT 1), (SELECT id FROM role where authority = "ROLE_POPUP_VIETNAM" LIMIT 1), 8);
+
+INSERT INTO permission (version, action, action_name, category_id, display_group, language_id, resource_id, role_id, site_id)
+					VALUES(0, '*', '*', NULL, 'Philippines-001', NULL, (SELECT id FROM resource WHERE controller_name = "adminCpsEquipment" LIMIT 1), (SELECT id FROM role where authority = "ROLE_POPUP_PHILIPPINES" LIMIT 1), 9);
+
+INSERT INTO permission (version, action, action_name, category_id, display_group, language_id, resource_id, role_id, site_id)
+					VALUES(0, '*', '*', NULL, 'Hongkong-001', NULL, (SELECT id FROM resource WHERE controller_name = "adminCpsEquipment" LIMIT 1), (SELECT id FROM role where authority = "ROLE_POPUP_HONGKONG" LIMIT 1), 10);
+
+INSERT INTO user_role(user_id,role_id) VALUES((SELECT id FROM user WHERE username = 'ft-mawan' LIMIT 1), (Select id from role WHERE authority = 'ROLE_EQUIPMENT_ASIA' LIMIT 1));
+
+INSERT INTO user_role(user_id,role_id) VALUES((SELECT id FROM user WHERE username = 'ft-mawan' LIMIT 1), (Select id from role WHERE authority = 'ROLE_EQUIPMENT_SINGAPORE' LIMIT 1));
+
+INSERT INTO user_role(user_id,role_id) VALUES((SELECT id FROM user WHERE username = 'ft-mawan' LIMIT 1), (Select id from role WHERE authority = 'ROLE_EQUIPMENT_INDIA' LIMIT 1));
+
+INSERT INTO user_role(user_id,role_id) VALUES((SELECT id FROM user WHERE username = 'ft-mawan' LIMIT 1), (Select id from role WHERE authority = 'ROLE_EQUIPMENT_TAIWAN' LIMIT 1));
+
+INSERT INTO user_role(user_id,role_id) VALUES((SELECT id FROM user WHERE username = 'ft-mawan' LIMIT 1), (Select id from role WHERE authority = 'ROLE_EQUIPMENT_INDONESIA' LIMIT 1));
+
+INSERT INTO user_role(user_id,role_id) VALUES((SELECT id FROM user WHERE username = 'ft-mawan' LIMIT 1), (Select id from role WHERE authority = 'ROLE_EQUIPMENT_MALAYSIA' LIMIT 1));
+
+INSERT INTO user_role(user_id,role_id) VALUES((SELECT id FROM user WHERE username = 'ft-mawan' LIMIT 1), (Select id from role WHERE authority = 'ROLE_EQUIPMENT_THAILAND' LIMIT 1));
+
+INSERT INTO user_role(user_id,role_id) VALUES((SELECT id FROM user WHERE username = 'ft-mawan' LIMIT 1), (Select id from role WHERE authority = 'ROLE_EQUIPMENT_VIETNAM' LIMIT 1));
+
+INSERT INTO user_role(user_id,role_id) VALUES((SELECT id FROM user WHERE username = 'ft-mawan' LIMIT 1), (Select id from role WHERE authority = 'ROLE_EQUIPMENT_PHILIPPINES' LIMIT 1));
+
+INSERT INTO user_role(user_id,role_id) VALUES((SELECT id FROM user WHERE username = 'ft-mawan' LIMIT 1), (Select id from role WHERE authority = 'ROLE_EQUIPMENT_HONGKONG' LIMIT 1));

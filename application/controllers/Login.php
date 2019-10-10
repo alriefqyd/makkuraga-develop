@@ -2,15 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
-	
+
 	function __construct() {
 		parent::__construct();
 		$this->load->model("login_model", "login");
+		  $this->load->model('user_model');
 		if(!empty($_SESSION['id_user']))
 		redirect('beranda');
-		
+
 	}
-	
+
 	public function index() {
 		if($_POST) {
 			$result = $this->login->validate_user($_POST);
@@ -20,10 +21,11 @@ class Login extends CI_Controller {
 					'user_name' => $result->username,
 					'nama' => $result->nama,
 					'level' => $result->level,
-					'lokasi' => $result->lokasi
+					'lokasi' => $result->lokasi,
+					'foto' =>$result->foto
 
 				];
-				
+
 				$this->session->set_userdata($data);
 				redirect('beranda');
 			} else {
@@ -34,16 +36,15 @@ class Login extends CI_Controller {
 				redirect('login');
 			}
 		}
-		
+
 		$this->load->view("login_view");
-		
+
 	}
-	public function logout() 
+	public function logout()
 	{
 		$data = ['id', 'user_name'];
 		$this->session->unset_userdata($data);
-		
+
 		redirect('login');
 	}
 }
-

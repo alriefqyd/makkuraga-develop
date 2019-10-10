@@ -26,7 +26,7 @@ class Equipment extends CI_Controller {
         $level_user = $this->session->userdata("level");
         $data['level'] = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
-        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Priority','Status','Location','Details');
+        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Priority','Status','Details');
         $data['level_user'] = $level_user;
         $data['alat'] =  $this->alat_model->getAlat();
         if($level_user == 'Master Admin'              ||
@@ -53,7 +53,7 @@ class Equipment extends CI_Controller {
         $location = $this->session->userdata('lokasi');
         $data['level_user'] = $level_user;
         $data['alat'] =  $this->alat_model->getAlat();
-        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Description','Priority','Status','Location','Mekanik','Detail','Sell');
+        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Description','Priority','Status','Mekanik','Detail','Sell');
         if($level_user == 'Master Admin'              ||
            $level_user == 'Inventory Admin All Area'  ||
            $level_user == 'Admin All Area'            ||
@@ -74,10 +74,11 @@ class Equipment extends CI_Controller {
     public function done()
     {
         $level_user = $this->session->userdata("level");
+        $data['level_user'] = $level_user;
         $data['level'] = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
         $data['part_number'] = $this->inventory_model->getAllPart();
-        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication','Description', 'Priority','Status','Location','Detail','Sell');
+        $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication','Description', 'Priority','Status','Detail','Sell');
         $data['alat'] =  $this->alat_model->getAlat();
         if($level_user == 'Master Admin')
         {
@@ -89,7 +90,7 @@ class Equipment extends CI_Controller {
         }
         $data['title_bar'] = "Done";
         $this->load->view('component/header');
-        $this->load->view('done/index',$data);
+        $this->load->view('done/index', $data);
         $this->load->view('component/footer');
     }
     public function show(){
@@ -150,9 +151,9 @@ class Equipment extends CI_Controller {
         echo json_encode($data);
     }
     public function delete(){
-            $data=$this->backlog_model->delete_backlog();
-            echo json_encode($data);
+  			$data=$this->backlog_model->delete_backlog();
+  			echo json_encode($data);
 
-    }
+  	}
 
 }

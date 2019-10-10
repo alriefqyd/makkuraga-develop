@@ -72,6 +72,11 @@
     <script src="<?php echo base_url() ?>assets/js/mechanic.js"></script>
     <script src="<?php echo base_url() ?>assets/js/pm.js"></script>
     <script src="<?php echo base_url() ?>assets/js/user.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/operation.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/inventory.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/alat.js"></script>
+    
+
 
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
@@ -82,6 +87,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.0.0/pnotify.min.js"></script>
 
   </body>
 </html>
