@@ -28,9 +28,28 @@ class Pm extends CI_Controller {
         $data['table_head'] = array('No','PM State','ID', 'Model', 'SN', 'Location', 'To Run','Prediction','Last Service','Next Service');
         $data['alat'] =  $this->alat_model->getAlat();
         $data['level_user'] = $level_user;
-        $data['pm'] = $this->pm_model->getAllData();
+
+        $data['ID'] = $this->pm_model->getAllEntity('ID','pm');
+        $data['model'] = $this->pm_model->getAllEntity('model','pm');
+        $filterlokasi = isset($_GET['ID']) ? $_GET['ID'] : "";
+        $filterPartNumber = isset($_GET['model']) ? $_GET['model'] : "";
+
+        
+        if(isset($_GET['ID']) || isset($_GET['model'])){
+           $data['pm'] = $this->pm_model->getAllDataByFilter();
+        } 
+        else {
+            $data['pm'] = $this->pm_model->getAllData();
+        }
+        
         if($level_user == "User Kodal" || $level_user == "Admin Kodal" || $level_user == "Admin Asera" || $level_user == "User Asera"){
-            $data['pm'] = $this->pm_model->getAllDataLokasi($this->session->userdata("lokasi"));
+            if(isset($_GET['ID']) || isset($_GET['model'])){
+                $data['pm'] = $this->pm_model->getAllDataByFilterLokasi($this->session->userdata("lokasi"));
+            } 
+            else {
+               $data['pm'] = $this->pm_model->getAllDataLokasi($this->session->userdata("lokasi"));
+            }
+            
         }
         $data['title_bar'] = "PM";
         $this->load->view('component/header');

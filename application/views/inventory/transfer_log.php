@@ -20,15 +20,39 @@
             </ul>
             <div class="clearfix"></div>
           </div>
+          <?php var_dump($tanggal) ?>
           <h5 style="padding-left: 10px">Filter By :</h5>
-          <form action="sell" method="GET">
+          <form action="transfer-log" method="GET">
             <div class="col-md-2 col-sm-2 col-xs-12">
-              <select name="lokasi" data-placeholder="select" class="form-control select js-auto-submit" style="width:100%">
-                <option value="All">Semua Lokasi</option>
+              <select name="date" data-placeholder="Pilih Tanggal" class="form-control select-search js-auto-submit" style="width:100%">
+               <option value="">Semua Tanggal</option>
+               <?php foreach ($tanggal as $tanggal ) { ?>
+                <option <?php if(isset($_GET['date'])){if($_GET['date'] == $tanggal['DATE_FORMAT(date, "%Y-%m-%d")']){echo "selected";}}?> value="<?php echo $tanggal['DATE_FORMAT(date, "%Y-%m-%d")']  ?>"><?php echo date_indo($tanggal['DATE_FORMAT(date, "%Y-%m-%d")']) ?></option>
+              <?php } ?>
+              </select> 
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+             <select name="part_number" data-placeholder="Pilih Part Number" class="form-control select-search js-auto-submit" style="width:100%">
+               <option value="">Semua Part Number</option>
+               <?php foreach ($part_number as $part_number ) { ?>
+                <option <?php if(isset($_GET['part_number'])){if($_GET['part_number'] == $part_number['part_number']){echo "selected";}}?> value="<?php echo $part_number['part_number'] ?>"><?php echo $part_number['part_number'] ?></option>
+              <?php } ?>
+            </select> 
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-12">
+              <select name="lokasi" data-placeholder="Lokasi Asal" class="form-control select-search js-auto-submit" style="width:100%">
+                <option value="">Semua Lokasi</option>
                 <option <?php if(isset($_GET['lokasi'])){if($_GET['lokasi'] == "Pusat"){echo "selected";}}?> value="Pusat">Pusat</option>
                 <option <?php if(isset($_GET['lokasi'])){if($_GET['lokasi'] == "Asera"){echo "selected";}}?> value="Asera">Asera</option>
                 <option <?php if(isset($_GET['lokasi'])){if($_GET['lokasi'] == "Kodal"){echo "selected";}}?> value="Kodal">Kodal</option>
-                <option <?php if(isset($_GET['lokasi'])){if($_GET['lokasi'] == "low_stock"){echo "selected";}}?> value="low_stock">Low Stock</option>
+              </select>
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-12">
+              <select name="lokasi_transfer" data-placeholder="Lokasi Transfer" class="form-control select-search js-auto-submit" style="width:100%">
+                <option value="">Semua Lokasi</option>
+                <option <?php if(isset($_GET['lokasi_transfer'])){if($_GET['lokasi_transfer'] == "Pusat"){echo "selected";}}?> value="Pusat">Pusat</option>
+                <option <?php if(isset($_GET['lokasi_transfer'])){if($_GET['lokasi_transfer'] == "Asera"){echo "selected";}}?> value="Asera">Asera</option>
+                <option <?php if(isset($_GET['lokasi_transfer'])){if($_GET['lokasi_transfer'] == "Kodal"){echo "selected";}}?> value="Kodal">Kodal</option>
               </select>
             </div>
           </form>

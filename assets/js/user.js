@@ -129,9 +129,6 @@ $("#send_user").on('click',function(event){
     var password = $(".newpassword").val();
     var level = $(".level_edit").val();
     var lokasi = $(".lokasi_edit").val();
-    console.log("mana");
-    console.log(password);
-    console.log(nama);
     $.confirm({
       title: 'Edit User',
       content: 'Apakah anda yakin?',
@@ -139,13 +136,11 @@ $("#send_user").on('click',function(event){
         confirm: function () {
           $.ajax({
             type: "POST",
-            url:"user/editUser",
+            url:"user/editUserDetail",
             dataType:"JSON",
             data : {id:id,nama:nama,user_name:user_name,password:password,level:level,lokasi:lokasi},
-            success: function(data,s){
-              // $(".modal_edit_mechanic").modal('hide');
-               // $(this).html(s);
-              console.log(data.user_name);
+            success: function(data){
+              $(".modal_edit_user").modal('hide');
               notifikasi("User berhasil di perbaharui");
               setTimeout(function(){
                 window.location.reload()}

@@ -23,7 +23,7 @@ function date_time(id)
   {
           s = "0"+s;
   }
-  result = ''+days[day]+'-'+d+'-'+months[month]+'-'+year+' || '+h+':'+m+':'+s;
+  result = ''+days[day]+' '+d+'-'+months[month]+'-'+year+' || '+h+':'+m+':'+s;
   document.getElementById(id).innerHTML = result;
   setTimeout('date_time("'+id+'");','1000');
   return true;

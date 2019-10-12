@@ -21,6 +21,98 @@ class Pm_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    public function getAllEntity($entity,$table)
+    {
+        $this->db->distinct();
+        $this->db->select($entity);
+        $this->db->from($table);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getAllDataByFilter()
+    {
+        $IDFilter = isset($_GET['ID']) ? $_GET['ID'] : "";
+        $modelFilter = isset($_GET['model']) ? $_GET['model'] : "";
+       
+        $this->db->select('*');
+        $this->db->from('pm');
+        if(isset($_GET['ID']))
+        {
+          if($_GET['ID'] != ""){
+            $this->db->where('ID',$IDFilter);
+          }
+        }
+        if(isset($_GET['model']))
+        {
+          if($_GET['model'] != ""){
+            $this->db->where('model',$modelFilter);
+          }
+        }
+  //   if($_GET['part_number'] !== ""){
+  //    $this->db->where('part_number',$filterPartNumber);
+  //  }
+  //  if($_GET['low_stock'] !== ""){
+  //   $this->db->where('quantity < minimum_quantity');
+  // }
+  // if($_GET['category'] !== ""){
+  //   $this->db->where('category', $filterCategory);
+  // }
+  // if($_GET['supplier'] !== ""){
+  //   $this->db->where('supplier', $filterSupplier);
+  // }
+  // if($_GET['account_code'] !== ""){
+  //   $this->db->where('account_code', $filterAccountCode);
+  // }
+  // if($_GET['alokasi'] !== ""){
+  //   $this->db->where('alokasi', $filterAlokasi);
+  // }
+        // $this->db->where($colom,$filter);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+    public function getAllDataByFilterLokasi($lokasi)
+    {
+        $IDFilter = isset($_GET['ID']) ? $_GET['ID'] : "";
+        $modelFilter = isset($_GET['model']) ? $_GET['model'] : "";
+       
+        $this->db->select('*');
+        $this->db->from('pm');
+        $this->db->where('location',$lokasi);
+        if(isset($_GET['ID']))
+        {
+          if($_GET['ID'] != ""){
+            $this->db->where('ID',$IDFilter);
+          }
+        }
+        if(isset($_GET['model']))
+        {
+          if($_GET['model'] != ""){
+            $this->db->where('model',$modelFilter);
+          }
+        }
+  //   if($_GET['part_number'] !== ""){
+  //    $this->db->where('part_number',$filterPartNumber);
+  //  }
+  //  if($_GET['low_stock'] !== ""){
+  //   $this->db->where('quantity < minimum_quantity');
+  // }
+  // if($_GET['category'] !== ""){
+  //   $this->db->where('category', $filterCategory);
+  // }
+  // if($_GET['supplier'] !== ""){
+  //   $this->db->where('supplier', $filterSupplier);
+  // }
+  // if($_GET['account_code'] !== ""){
+  //   $this->db->where('account_code', $filterAccountCode);
+  // }
+  // if($_GET['alokasi'] !== ""){
+  //   $this->db->where('alokasi', $filterAlokasi);
+  // }
+        // $this->db->where($colom,$filter);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
     public function getDataById()
     {
         $id_pm = $this->input->post('id_pm');

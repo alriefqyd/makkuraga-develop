@@ -17,6 +17,13 @@ $(document).ready(function() {
     });
   });
 
+   $('.select-search').each(function(){
+    $(this).select2({
+      placeholder:"Pilih Data",
+      allowClear:true,
+    });
+  });
+
   $('.select_ID').each(function(){
     $(this).select2({
       allowClear:true,

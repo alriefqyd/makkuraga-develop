@@ -11,6 +11,7 @@ class Equipment extends CI_Controller {
         $this->load->model('backlog_model');
         $this->load->model('mechanic_model');
         $this->load->model('inventory_model');
+        $this->load->model('pm_model');
         $this->load->model('user_model');
         $this->load->model('alat_model');
         $this->load->helper('url_helper','form');
@@ -29,16 +30,40 @@ class Equipment extends CI_Controller {
         $data['table_head'] = array('No','Down Date','Up Date','ID', 'Model', 'Hours Meter', 'Indication', 'Priority','Status','Location','Details');
         $data['level_user'] = $level_user;
         $data['alat'] =  $this->alat_model->getAlat();
+
+        $data['ID'] = $this->backlog_model->getAllEntity('*','alat');
+        $data['model'] = $this->backlog_model->getAllEntity('model','alat');
+
+        // if(isset($_GET['ID']) || isset($_GET['model'])){
+        //    $data['backlog'] = $this->backlog_model->getAllDataByFilter();
+        // } 
+        // else {
+        //     $data['backlog'] = $this->backlog_model->getAllData();
+        // }
+
         if($level_user == 'Master Admin'              ||
            $level_user == 'Inventory Admin All Area'  ||
            $level_user == 'Admin All Area'            ||
            $level_user == 'Mekanik Admin All Area'    ||
            $level_user == 'User All Area'             ){
-            $data['backlog'] = $this->backlog_model->getAllDataMaster("backlog");
+            
+            if(isset($_GET['ID']) || isset($_GET['model'])){
+               $data['backlog'] = $this->backlog_model->getAllDataByFilter();
+            } 
+            else {
+                $data['backlog'] = $this->backlog_model->getAllDataMaster("backlog");
+            }
+
         }
         else
         {
-            $data['backlog'] = $this->backlog_model->getAllDataHistory("backlog",$location);
+            if(isset($_GET['ID']) || isset($_GET['model'])){
+               $data['backlog'] = $this->backlog_model->getAllDataByFilterHistory("backlog",$location);
+            } 
+            else {
+               $data['backlog'] = $this->backlog_model->getAllDataHistory("backlog",$location);
+            }
+            
         }
         $data['title_bar'] = "Backlog";
         $this->load->view('component/header');
@@ -73,6 +98,8 @@ class Equipment extends CI_Controller {
     }
     public function done()
     {
+        $data['ID'] = $this->backlog_model->getAllEntity('*','alat');
+        $data['model'] = $this->backlog_model->getAllEntity('model','alat');
         $level_user = $this->session->userdata("level");
         $data['level'] = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
@@ -81,11 +108,22 @@ class Equipment extends CI_Controller {
         $data['alat'] =  $this->alat_model->getAlat();
         if($level_user == 'Master Admin')
         {
-            $data['done'] = $this->backlog_model->getAllDataMaster("done");
+            if(isset($_GET['ID']) || isset($_GET['model'])){
+               $data['done'] = $this->backlog_model->getAllDataByFilterDone();
+            } 
+            else {
+                $data['done'] = $this->backlog_model->getAllDataMaster("done");
+            }
+
         }
         else
         {
-            $data['done'] = $this->backlog_model->getAllDataHistory("done",$location);
+           if(isset($_GET['ID']) || isset($_GET['model'])){
+               $data['done'] = $this->backlog_model->getAllDataByFilterHistory("done",$location);
+            } 
+            else {
+               $data['done'] = $this->backlog_model->getAllDataHistory("done",$location);
+            }
         }
         $data['title_bar'] = "Done";
         $this->load->view('component/header');

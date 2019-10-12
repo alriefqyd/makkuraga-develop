@@ -215,6 +215,13 @@ $(".delete_inventory").on("click",function(e){
 
     });
 
+$(".js-auto-submit").each(function () {
+  $(this).on("change click", function(){
+    console.log("hahaha");
+     $(this).closest("form").submit();
+  })
+});
+
 $(".js-auto-submit").on("change", function () {
   $(this).closest("form").submit();
 });

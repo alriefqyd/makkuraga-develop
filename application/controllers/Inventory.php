@@ -25,20 +25,25 @@ class Inventory extends CI_Controller {
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
         $tanggal = date('Y-m-d');
+        $data['part_number'] = $this->inventory_model->getAllEntity('part_number','inventory');
+        $data['category'] = $this->inventory_model->getAllEntity('category','inventory');
+        $data['supplier'] = $this->inventory_model->getAllEntity('supplier','inventory');
+        $data['account_code'] = $this->inventory_model->getAllEntity('account_code','inventory');
+        $data['alokasi'] = $this->inventory_model->getAllEntity('alokasi','inventory');
         $data['level_user'] = $level_user;
         $filterlokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : "";
-        if(isset($_GET['lokasi'])){
-          if($filterlokasi != "All" && $filterlokasi != "low_stock"){
-            $data['inventory'] = $this->inventory_model->getAllDataByLocation($filterlokasi);
-          }
-          else if($filterlokasi == "low_stock"){
-            $data['inventory'] = $this->inventory_model->getAllDataLowStock();
-          }
-          else {
-            $data['inventory'] = $this->inventory_model->getAllData();
-          }
-        } else {
-            $data['inventory'] = $this->inventory_model->getAllData();
+        $filterPartNumber = isset($_GET['part_number']) ? $_GET['part_number'] : "";
+        $low_stock = isset($_GET['low_stock']) ? $_GET['low_stock'] : "";
+        $filterCategory = isset($_GET['category']) ? $_GET['category'] : "";
+        $filterSupplier = isset($_GET['supplier']) ? $_GET['supplier'] : "";
+        $filterAccountCode = isset($_GET['account_code']) ? $_GET['account_code'] : "";
+        $filterAlokasi = isset($_GET['alokasi']) ? $_GET['alokasi'] : "";
+
+        if(isset($_GET['lokasi']) || isset($_GET['part_number']) || isset($_GET['part_number']) || isset($_GET['category']) || isset($_GET['supplier']) || isset($_GET['account_code']) || isset($_GET['alokasi'])){
+           $data['inventory'] = $this->inventory_model->getAllDataByFilter();
+        } 
+        else {
+        $data['inventory'] = $this->inventory_model->getAllData();
         }
 
         $data['table_head'] = array('No','Part Number','Description', 'Category', 'Cost', 'Price', 'Location','Quantity','Account Code','Action');
@@ -52,68 +57,99 @@ class Inventory extends CI_Controller {
 
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
+        $data['part_number'] = $this->inventory_model->getAllEntitySell();
+        $data['model'] = $this->inventory_model->getAllEntity('model','sell');
         $tanggal = date('Y-m-d');
+        $data['tanggal'] = $this->inventory_model->getAllTanggal();
         $data['level_user'] = $level_user;
         $filterlokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : "";
-        if(isset($_GET['lokasi'])){
-          if($filterlokasi != "All"){
-            $data['inventory'] = $this->inventory_model->getAllDataSellByLocation($filterlokasi);
-          }
-          else {
-              $data['inventory'] = $this->inventory_model->getAllDataSell();
-          }
-        } else {
-            $data['inventory'] = $this->inventory_model->getAllDataSell();
+        $filterPartNumber = isset($_GET['part_number']) ? $_GET['part_number'] : "";
+        $filterTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : "";
+
+        if(isset($_GET['lokasi']) || isset($_GET['part_number']) || isset($_GET['part_number']) || isset($_GET['category']) || isset($_GET['supplier']) || isset($_GET['account_code']) || isset($_GET['alokasi'])){
+           $data['inventory'] = $this->inventory_model->getAllDataSellByFilter();
+        } 
+        else {
+        $data['inventory'] = $this->inventory_model->getAllDataSell();
         }
 
-        $data['table_head'] = array('No','Date','ID', 'Model', 'Part Number', 'Lokasi','Quantity','Harga Jual','Total');
-        $data['title_bar'] = "Sell Log";
-        $this->load->view('component/header');
-        $this->load->view('inventory/sell_log',$data);
-        $this->load->view('component/footer');
+    //     if(isset($_GET['lokasi'])){
+    //       if($filterlokasi != "All"){
+    //         $data['inventory'] = $this->inventory_model->getAllDataSellByLocation($filterlokasi);
+    //     }
+    //     else {
+    //       $data['inventory'] = $this->inventory_model->getAllDataSell();
+    //   }
+    // } else {
+    //     $data['inventory'] = $this->inventory_model->getAllDataSell();
+    // }
+
+    $data['table_head'] = array('No','Date','ID', 'Model', 'Part Number', 'Lokasi','Quantity','Harga Jual','Total');
+    $data['title_bar'] = "Sell Log";
+    $this->load->view('component/header');
+    $this->load->view('inventory/sell_log',$data);
+    $this->load->view('component/footer');
     }
     public function transfer()
     {
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
+
+        $data['part_number'] = $this->inventory_model->getAllEntity('part_number','inventory');
+        $data['category'] = $this->inventory_model->getAllEntity('category','inventory');
+        $data['supplier'] = $this->inventory_model->getAllEntity('supplier','inventory');
+        $data['account_code'] = $this->inventory_model->getAllEntity('account_code','inventory');
+        $data['alokasi'] = $this->inventory_model->getAllEntity('alokasi','inventory');
+        $data['level_user'] = $level_user;
+
+        $filterlokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : "";
+        $filterPartNumber = isset($_GET['part_number']) ? $_GET['part_number'] : "";
+        $filterCategory = isset($_GET['category']) ? $_GET['category'] : "";
+        $filterSupplier = isset($_GET['supplier']) ? $_GET['supplier'] : "";
+        $filterAccountCode = isset($_GET['account_code']) ? $_GET['account_code'] : "";
+        $filterAlokasi = isset($_GET['alokasi']) ? $_GET['alokasi'] : "";
+
         $tanggal = date('Y-m-d');
         $data['level_user'] = $level_user;
         $filterlokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : "";
-        if(isset($_GET['lokasi'])){
-          if($filterlokasi != "All"){
-            $data['inventory'] = $this->inventory_model->getAllDataByLocation($filterlokasi);
-          }
-          else {
-              $data['inventory'] = $this->inventory_model->getAllData();
-          }
-        } else {
-            $data['inventory'] = $this->inventory_model->getAllData();
+        if(isset($_GET['lokasi']) || isset($_GET['part_number']) || isset($_GET['part_number']) || isset($_GET['category']) || isset($_GET['supplier']) || isset($_GET['account_code']) || isset($_GET['alokasi'])){
+           $data['inventory'] = $this->inventory_model->getAllDataByFilter();
+       } 
+       else {
+        $data['inventory'] = $this->inventory_model->getAllData();
         }
 
-        $data['table_head'] = array('No','Part Number','Description', 'Category', 'Cost', 'Price', 'Location','Quantity','Account Code','Action');
-        $data['title_bar'] = "Transfer";
-        $this->load->view('component/header');
-        $this->load->view('inventory/transfer',$data);
-        $this->load->view('component/footer');
+    $data['table_head'] = array('No','Part Number','Description', 'Category', 'Cost', 'Price', 'Location','Quantity','Account Code','Action');
+    $data['title_bar'] = "Transfer";
+    $this->load->view('component/header');
+    $this->load->view('inventory/transfer',$data);
+    $this->load->view('component/footer');
     }
     public function transfer_log()
     {
+       
         $level_user = $this->session->userdata("level");
         $location = $this->session->userdata('lokasi');
         $tanggal = date('Y-m-d');
         $data['level_user'] = $level_user;
-        $filterlokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : "";
-        if(isset($_GET['lokasi'])){
-          if($filterlokasi != "All"){
-            $data['inventory'] = $this->inventory_model->getAllDataTransferByLocation($filterlokasi);
-          }
-          else {
-              $data['inventory'] = $this->inventory_model->getAllDataTransfer();
-          }
-        } else {
-            $data['inventory'] = $this->inventory_model->getAllDataTransfer();
-        }
+        $data['part_number'] = $this->inventory_model->getAllEntity('part_number','transfer_log');
+        $data['lokasi'] = $this->inventory_model->getAllEntity('location_from','transfer_log');
+        $data['tanggal'] = $this->inventory_model->getAllDate();
+        $data['level_user'] = $level_user;
 
+        $filterTanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : "";
+        $filterPartNumber = isset($_GET['part_number']) ? $_GET['part_number'] : "";
+        $filterAccountCode = isset($_GET['account_code']) ? $_GET['account_code'] : "";
+       
+        $tanggal = date('Y-m-d');
+        $data['level_user'] = $level_user;
+        $filterlokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : "";
+        if(isset($_GET['lokasi_transfer']) || isset($_GET['lokasi']) || isset($_GET['part_number']) || isset($_GET['date'])){
+           $data['inventory'] = $this->inventory_model->getAllDataTransferByFilter();
+       } 
+       else {
+        $data['inventory'] = $this->inventory_model->getAllDataTransfer();
+        }
         $data['table_head'] = array('No','Part Number','Location From', 'Location Transfer', 'User', 'Tanggal Transfer', 'Quantity Awal','Quantity Transfer');
         $data['title_bar'] = "Transfer";
         $this->load->view('component/header');
@@ -158,16 +194,16 @@ class Inventory extends CI_Controller {
         echo json_encode($data);
     }
     public function getDataById(){
-  			$id = $this->input->post('id');
-  			$data = $this->inventory_model->getDataById($id);
-  			echo json_encode($data);
-  	}
+     $id = $this->input->post('id');
+     $data = $this->inventory_model->getDataById($id);
+     echo json_encode($data);
+    }
     public function getDataByLocationAndPartNumber(){
-  			$pn = $this->input->post('part_number');
-        $location = $this->input->post('location_to_actual');
-  			$data = $this->inventory_model->getDataByLocationAndPartNumber($pn,$location);
-  			echo json_encode($data);
-  	}
+     $pn = $this->input->post('part_number');
+     $location = $this->input->post('location_to_actual');
+     $data = $this->inventory_model->getDataByLocationAndPartNumber($pn,$location);
+     echo json_encode($data);
+    }
     public function getDescription(){
         $id = $this->input->post('id_backlog');
         $data = $this->backlog_model->getDescription($id);
@@ -198,8 +234,8 @@ class Inventory extends CI_Controller {
     public function transferInventory(){
         $data=$this->inventory_model->transfer_inventory();
         echo json_encode($data);
-        
-        // Save Transfer Log
+
+            // Save Transfer Log
 
         $part_number = $this->input->post('part_number');
         $location_from = $this->input->post('location_from');
@@ -221,7 +257,7 @@ class Inventory extends CI_Controller {
 
     }
     public function createInventoryTransfer(){
-        // Create Inventory
+            // Create Inventory
         $fields = array(
             'part_number' => $this->input->post('part_number'),
             'description' => $this->input->post('description'),
@@ -243,15 +279,15 @@ class Inventory extends CI_Controller {
         $result = ($quantity_compare - $quantity);
         $location_from = $this->input->post('location_from');
         $location_to = $this->input->post('location_to');
-        
-        // Update Inventory Data Location From
+
+            // Update Inventory Data Location From
         $this->db->set('quantity', $result);
         $this->db->where('location', $location_from);
         $this->db->where('part_number', $part_number);
         $update = $this->db->update("inventory");
-        
-       
-        // Transfer Log
+
+
+            // Transfer Log
         date_default_timezone_set("Asia/Makassar");
         $log = array(
             'part_number' => $part_number,
@@ -266,16 +302,16 @@ class Inventory extends CI_Controller {
         $this->db->insert('transfer_log',$log);
     }
     public function deleteInventory(){
-  			// $newData = json_encode($data);
-  			// $fields = array(
-  			//     'priority' => $this->input->post('priority'),
-  			// );
-  			//  $this->db->where('id_backlog', 'id_backlog');
-  			// $this->db->update('backlog',$fields);
-  			$data=$this->inventory_model->delete_inventory();
-  			echo json_encode($data);
+      			// $newData = json_encode($data);
+      			// $fields = array(
+      			//     'priority' => $this->input->post('priority'),
+      			// );
+      			//  $this->db->where('id_backlog', 'id_backlog');
+      			// $this->db->update('backlog',$fields);
+     $data=$this->inventory_model->delete_inventory();
+     echo json_encode($data);
 
-  	}
+    }
     public function save_sell(){
         $newData = json_encode($data);
         $source = $this->input->post('date');
@@ -283,16 +319,16 @@ class Inventory extends CI_Controller {
 
         $fields = array(
             'ID' => $this->input->post('ID'),
-            'tanggal' => $date->format('Y-m-d'), // 31-07-2012,
-            'part_number' => $this->input->post('part_number'),
-            'harga' => $this->input->post('price_sell'),
-            'quantity' => $this->input->post('quantity'),
-            'total' => $this->input->post('total'),
-            'model' => $this->input->post('model'),
+                'tanggal' => $date->format('Y-m-d'), // 31-07-2012,
+                'part_number' => $this->input->post('part_number'),
+                'harga' => $this->input->post('price_sell'),
+                'quantity' => $this->input->post('quantity'),
+                'total' => $this->input->post('total'),
+                'model' => $this->input->post('model'),
 
-        );
+            );
         $this->db->insert('sell',$fields);
-        // print_r($_POST);
+            // print_r($_POST);
         $id_inventory = $this->input->post('part_number');
         $quantity = $this->input->post('quantity');
         $quantity_awal = $this->input->post('quantity_awal');
@@ -302,4 +338,4 @@ class Inventory extends CI_Controller {
         $update = $this->db->update("inventory");
     }
 
-}
+    }

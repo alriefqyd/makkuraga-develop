@@ -53,7 +53,7 @@
               <select name="tanggal" data-placeholder="Pilih Tanggal" class="form-control select-search js-auto-submit" style="width:100%">
                <option value="">Semua Tanggal</option>
                <?php foreach ($tanggal as $tanggal ) { ?>
-                <option <?php if(isset($_GET['tanggal'])){if($_GET['tanggal'] == $tanggal['DATE_FORMAT(tanggal, "%Y-%m-%d")']){echo "selected";}}?> value="<?php echo $tanggal['DATE_FORMAT(tanggal, "%Y-%m-%d")']  ?>"><?php echo $tanggal['DATE_FORMAT(tanggal, "%Y-%m-%d")'] ?></option>
+                <option <?php if(isset($_GET['tanggal'])){if($_GET['tanggal'] == $tanggal['DATE_FORMAT(tanggal, "%m-%Y")']){echo "selected";}}?> value="<?php echo $tanggal['DATE_FORMAT(tanggal, "%m-%Y")']  ?>"><?php echo $tanggal['DATE_FORMAT(tanggal, "%m-%Y")'] ?></option>
               <?php } ?>
               </select> 
             </div>

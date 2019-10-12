@@ -21,15 +21,38 @@
             <div class="clearfix"></div>
           </div>
           <h5 style="padding-left: 10px">Filter By :</h5>
-          <form action="sell" method="GET">
+          <form action="transfer" method="GET">
             <div class="col-md-2 col-sm-2 col-xs-12">
-              <select name="lokasi" data-placeholder="select" class="form-control select js-auto-submit" style="width:100%">
-                <option value="All">Semua Lokasi</option>
+             <select name="part_number" data-placeholder="Pilih Part Number" class="form-control select-search js-auto-submit" style="width:100%">
+               <option value="">Semua Part Number</option>
+               <?php foreach ($part_number as $part_number ) { ?>
+                <option <?php if(isset($_GET['part_number'])){if($_GET['part_number'] == $part_number['part_number']){echo "selected";}}?> value="<?php echo $part_number['part_number'] ?>"><?php echo $part_number['part_number'] ?></option>
+              <?php } ?>
+            </select> 
+          </div>
+            <div class="col-md-1 col-sm-2 col-xs-12">
+              <select name="lokasi" data-placeholder="Lokasi" class="form-control select-search js-auto-submit" style="width:100%">
+                <option value="">Semua Lokasi</option>
                 <option <?php if(isset($_GET['lokasi'])){if($_GET['lokasi'] == "Pusat"){echo "selected";}}?> value="Pusat">Pusat</option>
                 <option <?php if(isset($_GET['lokasi'])){if($_GET['lokasi'] == "Asera"){echo "selected";}}?> value="Asera">Asera</option>
                 <option <?php if(isset($_GET['lokasi'])){if($_GET['lokasi'] == "Kodal"){echo "selected";}}?> value="Kodal">Kodal</option>
-                <option <?php if(isset($_GET['lokasi'])){if($_GET['lokasi'] == "low_stock"){echo "selected";}}?> value="low_stock">Low Stock</option>
               </select>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+              <select name="account_code" data-placeholder="Pilih Account Code" class="form-control select-search js-auto-submit" style="width:100%">
+               <option value="">Semua Account Code</option>
+               <?php foreach ($account_code as $account_code ) { ?>
+                <option <?php if(isset($_GET['account_code'])){if($_GET['account_code'] == $account_code['account_code']){echo "selected";}}?> value="<?php echo $account_code['account_code'] ?>"><?php echo $account_code['account_code'] ?></option>
+              <?php } ?>
+              </select> 
+            </div>
+            <div class="col-md-1 col-sm-2 col-xs-12">
+               <select name="category" data-placeholder="Category" class="form-control select-search js-auto-submit" style="width:100%">
+                 <option value="">Semua Category</option>
+                 <?php foreach ($category as $category ) { ?>
+                  <option <?php if(isset($_GET['category'])){if($_GET['category'] == $category['category']){echo "selected";}}?> value="<?php echo $category['category'] ?>"><?php echo $category['category'] ?></option>
+                <?php } ?>
+              </select> 
             </div>
           </form>
           <div class="x_content data-backlog">

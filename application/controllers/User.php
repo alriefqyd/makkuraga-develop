@@ -59,6 +59,10 @@ class User extends CI_Controller {
         $data = $this->user_model->getUser();
         echo json_encode($data);
     }
+    public function editUserDetail(){
+        $data=$this->user_model->update();
+        echo json_encode($data);
+    }
     public function editUser(){
      $this->load->library('upload');
      $id=$this->input->post('id');

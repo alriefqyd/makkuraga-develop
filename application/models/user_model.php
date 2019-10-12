@@ -50,17 +50,23 @@ class User_model extends CI_Model
        $this->db->delete('user');
        return $result;
    }
-   // public function update_user()
-   // {
-   //     $id=$this->input->post('id');
-   //     $fields = array(
-   //         'nama' => $this->input->post('nama'),
-   //         'user_name' => $this->input->post('user_name'),
-   //         'password' => $this->input->post('password'),
-   //         'level' => $this->input->post('level'),
-   //         'lokasi' => $this->input->post('lokasi')
-   //     );
-   //     $result = $this->db->update_where('user',$id);
-   //     return $result;
-   // }
+   public function update()
+   {
+       $id=$this->input->post('id');
+       $nama=$this->input->post('nama');
+     $user_name=$this->input->post('user_name');
+     $password=$this->input->post('password');
+     $level=$this->input->post('level');
+     $lokasi=$this->input->post('lokasi');
+       
+       $this->db->set('nama', $nama);
+       $this->db->set('user_name', $user_name);
+       $this->db->set('password', md5($password));
+       $this->db->set('level', $level);
+       $this->db->set('lokasi', $lokasi);
+       $this->db->where('id', $id);
+        $result=$this->db->update('user');
+        return $result;
+      
+   }
 }

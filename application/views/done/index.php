@@ -21,6 +21,26 @@
             </ul>
             <div class="clearfix"></div>
           </div>
+          <form action="done" method="GET">
+            <div class="row">
+              <div class="col-md-2 col-sm-2 col-xs-12">
+               <select name="ID" data-placeholder="Pilih ID" class="form-control select-search js-auto-submit" style="width:100%">
+                 <option value="">Semua ID</option>
+                 <?php foreach ($ID as $ID ) { ?>
+                  <option <?php if(isset($_GET['ID'])){if($_GET['ID'] == $ID['id']){echo "selected";}}?> value="<?php echo $ID['id'] ?>"><?php echo $ID['ID_alat'] ?></option>
+                <?php } ?>
+              </select> 
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+             <select name="model" data-placeholder="Model" class="form-control select-search js-auto-submit" style="width:100%">
+               <option value="">Semua Model</option>
+               <?php foreach ($model as $model ) { ?>
+                <option <?php if(isset($_GET['model'])){if($_GET['model'] == $model['model']){echo "selected";}}?> value="<?php echo $model['model'] ?>"><?php echo $model['model'] ?></option>
+              <?php } ?>
+            </select> 
+          </div>
+        </div>
+      </form>
           <div class="x_content data-backlog">
            <table id="datatable" class="table table-striped table-bordered table-backlog">
             <thead>
@@ -69,7 +89,7 @@
                       </div>
                     </div>
                   </fieldset></td>
-                  <td><?php echo $backlog['ID'] ?></td>
+                  <td><?php echo $backlog['ID_alat'] ?></td>
                   <td><?php echo $backlog['model'] ?></td>
                   <td><?php echo $backlog['hours_meter'] ?></td>
                   <td><?php echo $backlog['indication'] ?></td>
@@ -102,7 +122,7 @@
                             <h4 class="modal-title">Service Log - Data Details</h4>
                           </div>
                           <div class="modal-body">
-                            <h3>ID Alat     : <?php echo $backlog['ID']; ?></h3>
+                            <h3>ID Alat     : <?php echo $backlog['ID_alat']; ?></h3>
                             <h3>Model Alat  : <?php echo $backlog['model']; ?></h3>
                             <h3>Down Date   : <?php echo $backlog['down_date']; ?></h3>
                             <h3>Up Date     : <?php echo $backlog['up_date']; ?></h3>
